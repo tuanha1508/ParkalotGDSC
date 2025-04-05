@@ -1,0 +1,17 @@
+{
+  "name": "park-tracking-system",
+  "version": "1.0.0",
+  "description": "Park Tracking System - Monorepo",
+  "private": true,
+  "scripts": {
+    "frontend:dev": "cd frontend && cross-env NODE_OPTIONS=\"--preserve-symlinks\" npm run dev",
+    "frontend:build": "cd frontend && npm run build",
+    "backend:dev": "cd backend && npm run dev",
+    "backend:start": "cd backend && npm start",
+    "dev": "concurrently \"npm run frontend:dev\" \"npm run backend:dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "cross-env": "^7.0.3"
+  }
+} 

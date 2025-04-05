@@ -1,0 +1,44 @@
+# Cursor rules
+.cursor/ 
+
+# Dependencies
+node_modules/ 
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build directories
+dist
+.output
+.nuxt
+.nitro
+.cache
+build
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+
+# Local Netlify folder
+.netlify
+
+# Testing
+coverage
