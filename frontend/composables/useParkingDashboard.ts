@@ -1,6 +1,8 @@
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { useParkingStore } from '~/stores/parking'
 import { useParking } from '~/composables/useParking'
+import { useParkingData, type ParkingLot } from '~/composables/useParkingData'
 
 export interface Activity {
   timestamp: number;
@@ -29,9 +31,12 @@ export interface PeakInfo {
 export const useParkingDashboard = () => {
   const parkingStore = useParkingStore()
   const { formatDateTime } = useParking()
+  const route = useRoute()
+  const parkingData = useParkingData()
   
   const isRefreshing = ref(false)
   const isManualEntryModalOpen = ref(false)
+  const selectedParkingLot = ref<ParkingLot | null>(null)
   
   const manualEntry = ref({
     licensePlate: '',
@@ -79,11 +84,11 @@ export const useParkingDashboard = () => {
   
   // Calculate total slots and available slots
   const totalSlots = computed(() => {
-    return parkingStore.slots.length
+    return selectedParkingLot.value ? selectedParkingLot.value.totalSpaces : parkingStore.slots.length
   })
   
   const totalAvailableSlots = computed(() => {
-    return parkingStore.slots.filter(slot => !slot.isOccupied).length
+    return selectedParkingLot.value ? selectedParkingLot.value.availableSpots : parkingStore.slots.filter(slot => !slot.isOccupied).length
   })
   
   const totalOccupiedSlots = computed(() => {
@@ -100,16 +105,68 @@ export const useParkingDashboard = () => {
     return sections
   })
   
+  // Load selected parking lot data from route query params
+  const loadSelectedParkingLot = async () => {
+    const lotId = route.query.selectedLot as string
+    
+    if (!lotId) return
+    
+    try {
+      isRefreshing.value = true
+      console.log('Loading selected parking lot data:', lotId)
+      
+      // Get destination from query params
+      const destination = route.query.destination as string || ''
+      const vehicleType = route.query.vehicleType as string || ''
+      const duration = route.query.duration as string || ''
+      
+      // Fetch parking lots data
+      const parkingLots = await parkingData.getParkingLots(destination, vehicleType, duration)
+      
+      // Find the selected lot
+      const selectedLot = parkingLots.find(lot => lot.id === lotId)
+      
+      if (selectedLot) {
+        console.log('Found selected parking lot:', selectedLot.name)
+        selectedParkingLot.value = selectedLot
+        
+        // Update parking hours based on selected lot (simulated difference)
+        parkingHours.value = {
+          opening: selectedLot.id.startsWith('A') ? '6:00 AM' : '7:00 AM',
+          closing: selectedLot.id.startsWith('B') ? '10:00 PM' : '11:00 PM',
+          special: `Weekend Hours for ${selectedLot.name}:<br>8:00 AM - 8:00 PM`
+        }
+        
+        // Update peak hours based on lot location (simulated difference)
+        peakInfo.value = {
+          peakHours: selectedLot.location.includes('North') 
+            ? '7:30 AM - 9:30 AM, 4:30 PM - 6:30 PM' 
+            : '8:00 AM - 10:00 AM, 4:00 PM - 6:00 PM',
+          quietHours: selectedLot.location.includes('South')
+            ? '10:00 AM - 1:00 PM, 7:00 PM - 9:00 PM'
+            : '11:00 AM - 2:00 PM, 7:00 PM - 9:00 PM'
+        }
+      } else {
+        console.warn('Selected parking lot not found:', lotId)
+      }
+    } catch (error) {
+      console.error('Error loading selected parking lot:', error)
+    } finally {
+      isRefreshing.value = false
+    }
+  }
+  
   // Initialize data
   const refreshData = async () => {
     isRefreshing.value = true
     
     try {
       console.log('Initializing parking data...')
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
       
-      // Reinitialize data
+      // Load selected parking lot first
+      await loadSelectedParkingLot()
+      
+      // Initialize store data
       parkingStore.initializeData()
       console.log(`Data initialized: ${parkingStore.slots.length} slots loaded`)
     } catch (error) {
@@ -179,6 +236,8 @@ export const useParkingDashboard = () => {
     refreshData,
     openManualEntryModal,
     handleManualEntry,
-    formatDateTime
+    formatDateTime,
+    selectedParkingLot,
+    loadSelectedParkingLot
   }
 } 

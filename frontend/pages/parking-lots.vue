@@ -15,46 +15,25 @@
         </p>
       </div>
       
-      <!-- Filters Section -->
-      <div class="border border-white/30 rounded-lg p-4 mb-6">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center flex-wrap gap-3">
-            <div class="flex items-center shrink-0">
-              <UIcon name="i-heroicons-funnel" class="h-5 w-5 text-white mr-2" />
-              <span class="text-white font-medium">Filters:</span>
-            </div>
-            
-            <div
-              v-if="filters.vehicleType.value"
-              class="flex items-center bg-black border border-white/30 rounded-full py-1 px-3 text-sm"
-            >
-              <span class="text-white">{{ filters.vehicleTypeLabel.value }}</span>
-              <button @click="handleClearVehicleType" class="ml-2 text-white opacity-70 hover:opacity-100">
-                <UIcon name="i-heroicons-x-mark" class="h-4 w-4" />
-              </button>
-            </div>
-            
-            <div
-              v-if="filters.duration.value"
-              class="flex items-center bg-black border border-white/30 rounded-full py-1 px-3 text-sm"
-            >
-              <span class="text-white">{{ filters.durationLabel.value }}</span>
-              <button @click="handleClearDuration" class="ml-2 text-white opacity-70 hover:opacity-100">
-                <UIcon name="i-heroicons-x-mark" class="h-4 w-4" />
-              </button>
-            </div>
-          </div>
-          
-          <UButton
-            v-if="filters.hasFilters.value"
-            color="gray"
-            variant="ghost"
-            @click="handleClearAll"
-            class="text-white shrink-0"
-          >
-            Clear All
-          </UButton>
+      <!-- Error Message -->
+      <div v-if="errorMessage" class="mb-6 p-3 bg-red-900/50 border border-red-700 rounded-lg text-white">
+        <div class="flex items-start">
+          <UIcon name="i-heroicons-exclamation-triangle" class="h-5 w-5 mr-2 flex-shrink-0 text-red-500" />
+          <p>{{ errorMessage }}</p>
         </div>
+      </div>
+      
+      <!-- Results Summary -->
+      <div v-if="search.parkingLots.value.length > 0" class="mb-4">
+        <h2 class="text-white text-lg font-medium">
+          Found {{ search.parkingLots.value.length }} parking lots
+          <span v-if="filters.destination.value">
+            near {{ filters.destination.value }}
+          </span>
+        </h2>
+        <p class="text-white/60 text-sm">
+          Sorted by driving distance from your destination
+        </p>
       </div>
       
       <!-- Parking Lots List -->
@@ -79,17 +58,23 @@
         <UIcon name="i-heroicons-face-frown" class="h-16 w-16 text-white opacity-50 mb-4" />
         <h3 class="text-xl font-semibold text-white">No parking lots found</h3>
         <p class="text-white opacity-70 mt-2 text-center">Try adjusting your filters or searching for a different location.</p>
+        <div class="mt-4">
+          <UButton @click="handleClearAll" color="white" variant="outline" class="rounded-full">
+            Reset Filters
+          </UButton>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, ref, computed, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import type { ParkingLot } from '../composables/useParkingData'
 import { useParkingFilters } from '../composables/useParkingFilters'
 import { useParkingSearch } from '../composables/useParkingSearch'
+import { useParkingData } from '../composables/useParkingData'
 
 // Import components
 import ParkingLotCard from '../components/parking/ParkingLotCard.vue'
@@ -101,6 +86,28 @@ definePageMeta({
 const router = useRouter()
 const filters = useParkingFilters()
 const search = useParkingSearch()
+const parkingData = useParkingData()
+const destinationInput = ref('')
+const travelMode = computed(() => parkingData.selectedTravelMode.value)
+const errorMessage = ref('')
+
+// Initialize with route params if available
+onMounted(() => {
+  if (filters.destination.value) {
+    destinationInput.value = filters.destination.value
+  }
+  
+  // Set travel mode to driving by default
+  parkingData.setTravelMode('driving')
+})
+
+// Set travel mode and refresh results
+const setTravelMode = (mode: 'walking' | 'driving') => {
+  parkingData.setTravelMode(mode)
+  if (filters.destination.value) {
+    refreshParkingLots()
+  }
+}
 
 // Event handlers for filter actions
 const handleClearVehicleType = () => {
@@ -113,18 +120,45 @@ const handleClearDuration = () => {
   refreshParkingLots()
 }
 
-const handleClearAll = () => {
-  filters.clearAllFilters()
+const handleClearDestination = () => {
+  filters.destination.value = ''
+  destinationInput.value = ''
   refreshParkingLots()
 }
 
+const handleClearAll = () => {
+  filters.clearAllFilters()
+  destinationInput.value = ''
+  refreshParkingLots()
+}
+
+// Search based on destination input
+const handleDestinationSearch = () => {
+  errorMessage.value = ''
+  if (destinationInput.value) {
+    filters.destination.value = destinationInput.value
+    filters.updateRouteQuery()
+    refreshParkingLots()
+  }
+}
+
 // Refresh parking lots data
-const refreshParkingLots = () => {
-  search.fetchParkingLots(
-    filters.destination.value,
-    filters.vehicleType.value,
-    filters.duration.value
-  )
+const refreshParkingLots = async () => {
+  errorMessage.value = ''
+  try {
+    await search.fetchParkingLots(
+      filters.destination.value,
+      filters.vehicleType.value,
+      filters.duration.value
+    )
+    
+    if (search.parkingLots.value.length === 0 && filters.destination.value) {
+      errorMessage.value = 'No parking lots found near your destination. Try another location or change your filters.'
+    }
+  } catch (error) {
+    console.error('Error fetching parking lots:', error)
+    errorMessage.value = 'There was an error finding parking lots. Please try again.'
+  }
 }
 
 // User actions
@@ -139,6 +173,13 @@ const selectParkingLot = (lot: ParkingLot) => {
     }
   })
 }
+
+// Watch for travel mode changes to refresh results
+watch(() => parkingData.selectedTravelMode.value, () => {
+  if (filters.destination.value) {
+    refreshParkingLots()
+  }
+})
 
 // Initialize the page
 onMounted(() => {

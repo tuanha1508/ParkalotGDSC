@@ -10,7 +10,10 @@
           </svg>
           Dashboard
         </h1>
-        <p class="text-white opacity-70 mt-1">Monitor and manage parking status</p>
+        <p class="text-white opacity-70 mt-1">
+          {{ selectedParkingLot ? selectedParkingLot.name + ' - ' + selectedParkingLot.location : 'Monitor and manage parking status' }}
+        </p>
+        
         <div class="flex mt-4 space-x-4">
           <button 
             @click="refreshData"
@@ -22,18 +25,28 @@
             </svg>
             {{ isRefreshing ? 'Refreshing...' : 'Refresh Data' }}
           </button>
+          <button
+            v-if="!selectedParkingLot"
+            @click="goToParkingLots"
+            class="border border-white/30 text-white px-4 py-2 rounded-full text-sm font-medium flex items-center"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Choose Parking Lot
+          </button>
         </div>
       </div>
       
       <!-- Stats Section -->
       <div class="border border-white/30 rounded-lg mb-8">
-        <ParkingStats />
+        <ParkingStats :selected-parking-lot="selectedParkingLot" />
       </div>
       
       <!-- Parking Information Cards -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <!-- Slots Information -->
-        <ParkingSlots />
+        <ParkingSlots :selected-parking-lot="selectedParkingLot" />
         
         <!-- Operating Hours -->
         <OperatingHours :hours="parkingHours" />
@@ -69,8 +82,14 @@ const {
   peakInfo,
   totalSlots,
   totalOccupiedSlots,
-  refreshData
+  refreshData,
+  selectedParkingLot
 } = useParkingDashboard()
+
+// Navigate to parking lots page
+const goToParkingLots = () => {
+  router.push('/parking-lots')
+}
 
 // Initialize data when component mounts
 onMounted(() => {

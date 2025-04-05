@@ -3,7 +3,6 @@
     <HeroSection />
     <StatsSection />
     <ModernTeamsSection />
-    <ProductDirectionSection />
     <FeaturesSection />
     <FoundationSection />
     <CTASection />
@@ -14,7 +13,6 @@
 import HeroSection from '~/components/about/HeroSection.vue'
 import StatsSection from '~/components/about/StatsSection.vue'
 import ModernTeamsSection from '~/components/about/ModernTeamsSection.vue'
-import ProductDirectionSection from '~/components/about/ProductDirectionSection.vue'
 import FeaturesSection from '~/components/about/FeaturesSection.vue'
 import FoundationSection from '~/components/about/FoundationSection.vue'
 import CTASection from '~/components/about/CTASection.vue'

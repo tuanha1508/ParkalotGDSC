@@ -9,13 +9,29 @@
       </h3>
     </div>
     <div class="p-5 space-y-4">
-      <div v-for="(value, section) in parkingStore.sectionStats" :key="section" class="flex justify-between">
-        <span class="text-white">Section {{ section }}</span>
-        <div>
-          <span class="text-green-400">{{ value.total - value.occupied }}</span>
-          <span class="text-white/70">/</span>
-          <span class="text-white">{{ value.total }}</span>
-          <span class="text-white/70 ml-1">slots</span>
+      <!-- Show sections from parkingStore if no selected parking lot -->
+      <div v-if="!selectedParkingLot">
+        <div v-for="(value, section) in parkingStore.sectionStats" :key="section" class="flex justify-between">
+          <span class="text-white">Section {{ section }}</span>
+          <div>
+            <span class="text-green-400">{{ value.total - value.occupied }}</span>
+            <span class="text-white/70">/</span>
+            <span class="text-white">{{ value.total }}</span>
+            <span class="text-white/70 ml-1">slots</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- If selected parking lot, show parking lot sections (simulated) -->
+      <div v-if="selectedParkingLot">
+        <div v-for="(section, index) in parkingLotSections" :key="index" class="flex justify-between">
+          <span class="text-white">{{ section.name }}</span>
+          <div>
+            <span class="text-green-400">{{ section.available }}</span>
+            <span class="text-white/70">/</span>
+            <span class="text-white">{{ section.total }}</span>
+            <span class="text-white/70 ml-1">slots</span>
+          </div>
         </div>
       </div>
       
@@ -36,15 +52,57 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useParkingStore } from '~/stores/parking'
+import type { ParkingLot } from '~/composables/useParkingData'
+
+const props = defineProps<{
+  selectedParkingLot: ParkingLot | null
+}>()
 
 const parkingStore = useParkingStore()
 
-// Calculate total slots and available slots
+// Generate simulated sections for the selected parking lot
+const parkingLotSections = computed(() => {
+  if (!props.selectedParkingLot) return []
+  
+  // Create 3 sections with random distribution of spots
+  const totalSpaces = props.selectedParkingLot.totalSpaces
+  const availableSpots = props.selectedParkingLot.availableSpots
+  
+  // Calculate spaces per section
+  const section1Total = Math.floor(totalSpaces * 0.4)
+  const section2Total = Math.floor(totalSpaces * 0.35)
+  const section3Total = totalSpaces - section1Total - section2Total
+  
+  // Calculate available spaces per section (distribute the available spots)
+  let remainingAvailable = availableSpots
+  const section1Available = Math.min(Math.floor(remainingAvailable * 0.5), section1Total)
+  remainingAvailable -= section1Available
+  
+  const section2Available = Math.min(Math.floor(remainingAvailable * 0.7), section2Total)
+  remainingAvailable -= section2Available
+  
+  const section3Available = Math.min(remainingAvailable, section3Total)
+  
+  return [
+    { name: 'Main Level', total: section1Total, available: section1Available },
+    { name: 'Upper Level', total: section2Total, available: section2Available },
+    { name: 'Lower Level', total: section3Total, available: section3Available }
+  ]
+})
+
+// Calculate total slots
 const totalSlots = computed(() => {
+  if (props.selectedParkingLot) {
+    return props.selectedParkingLot.totalSpaces
+  }
   return parkingStore.slots.length
 })
 
+// Calculate available slots
 const totalAvailableSlots = computed(() => {
+  if (props.selectedParkingLot) {
+    return props.selectedParkingLot.availableSpots
+  }
   return parkingStore.slots.filter(slot => !slot.isOccupied).length
 })
 </script> 

@@ -31,28 +31,26 @@
         <div v-if="showResults" v-for="(lot, index) in nearbyParkingLots" :key="lot.id" 
              class="absolute z-10 transition-all duration-500"
              :class="getLotPositionClasses(index)">
-          <div class="flex flex-col items-center">
-            <div class="w-8 h-8 rounded-full bg-blue-500/80 flex items-center justify-center border-2 border-white/70 relative hover:scale-110 transition-transform cursor-pointer"
-                @mouseenter="hoveredLot = lot"
-                @mouseleave="hoveredLot = null">
-              <span class="font-bold text-white">P</span>
-              <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-blue-600/80 rounded-full flex items-center justify-center text-[10px] font-bold border border-white/70">
-                {{ lot.availableSpots }}
-              </div>
-            </div>
-            <div class="text-white text-xs mt-1 bg-black/80 px-2 py-1 rounded-md whitespace-nowrap max-w-[150px]">
-              {{ lot.name }}
-            </div>
+          <div 
+            class="relative w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center border-2 border-white cursor-pointer"
+            @mouseenter="hoveredLot = lot"
+            @mouseleave="hoveredLot = null"
+          >
+            <div class="text-white font-bold text-xs">{{ lot.id }}</div>
+            
+            <!-- Route Visualization (decorative) -->
+            <div 
+              class="route-line absolute border-2 border-dashed border-blue-400/30 opacity-70"
+              :class="getRouteClasses(index)"
+            ></div>
           </div>
-          
-          <!-- Route indicator -->
-          <div v-if="hoveredLot && hoveredLot.id === lot.id" class="absolute z-0" 
-               :class="getRouteClasses(index)">
-            <div class="h-full border-2 border-dashed border-white/30 rounded-lg"></div>
+          <div class="text-white text-xs mt-1 bg-black/60 px-2 py-1 rounded flex flex-col items-center">
+            <span class="whitespace-nowrap font-medium">{{ lot.availableSpots }} spots</span>
+            <span class="whitespace-nowrap text-white/70">{{ lot.distanceInKm }} km</span>
           </div>
         </div>
         
-        <!-- Parking Details Popup -->
+        <!-- Lot Detail Tooltip -->
         <div v-if="hoveredLot" class="absolute bottom-2 left-2 right-2 bg-black/90 border border-white/30 rounded-lg p-3 text-white text-sm z-20">
           <div class="flex justify-between items-start">
             <div>
@@ -66,7 +64,7 @@
                 <span class="text-white/70 mx-1">of</span>
                 <span>{{ hoveredLot.totalSpots }}</span>
                 <span class="text-white/70 ml-1">spots available</span>
-                <span class="ml-3 text-white/70">{{ hoveredLot.distanceInMiles }} miles</span>
+                <span class="ml-3 text-white/70">{{ hoveredLot.distanceInKm }} km</span>
               </div>
             </div>
             <button class="bg-blue-600/80 hover:bg-blue-700/80 px-3 py-1 rounded text-xs font-medium">
@@ -76,10 +74,12 @@
           <!-- Walking time indicator -->
           <div class="mt-2 flex items-center text-xs text-white/70">
             <span class="i-heroicons-clock mr-1"></span>
-            <span>{{ Math.round(hoveredLot.distanceInMiles * 20) }} min walk</span>
+            <span v-if="hoveredLot.routeDuration">{{ hoveredLot.routeDuration }} {{ hoveredLot.travelMode }}</span>
+            <span v-else>{{ Math.round(hoveredLot.distanceInKm * 12) }} min walk</span>
             <span class="mx-2">|</span>
             <span class="i-heroicons-car mr-1"></span>
-            <span>{{ Math.round(hoveredLot.distanceInMiles * 3) }} min drive</span>
+            <span v-if="hoveredLot.travelMode === 'driving' && hoveredLot.routeDuration">{{ hoveredLot.routeDuration }}</span>
+            <span v-else>{{ Math.round(hoveredLot.distanceInKm * 1.8) }} min drive</span>
           </div>
         </div>
         
