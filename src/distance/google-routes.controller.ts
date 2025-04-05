@@ -30,7 +30,8 @@ export class GoogleRoutesController {
   //   }]
   @Get()
 
-  async getDistances(@Query('destination') destination: string) {
+  async getDistances(@Query('destination') destination: string,
+                     @Query('permit') permit: string) {
     const apiKey = this.configService.get<string>('GOOGLE_MAPS_API_KEY')
 
     if (!apiKey) {
@@ -44,28 +45,31 @@ export class GoogleRoutesController {
     const distances: any[] = []
 
     for (const parking of parsedData) {
-      const org = parking.Address
-      const parkingId = parking.ParkingID
-
-      const params = {
-        origins: org,
-        destinations: destination,
-        key: apiKey,
-      }
-
-      try {
-        const response$ = this.httpService.get(url, {params})
-        const response = await firstValueFrom(response$)
-
-        const distanceData = response.data?.rows?.[0]?.elements?.[0]?.distance
-        if (distanceData) {
-          distances.push({
-            parkingLotId: parkingId, // Use actual ParkingID
-            distance: distanceData,
-          })
+      let permitType = parking.PermitTypes
+      permitType = String(permitType)
+      if (permit == permitType) {
+        const org = parking.Address
+        const parkingId = parking.ParkingID
+        const params = {
+          origins: org,
+          destinations: destination,
+          key: apiKey,
         }
-      } catch (error) {
-        console.error(`Error fetching distance from parking lot ${parkingId}:`, error.message)
+
+        try {
+          const response$ = this.httpService.get(url, { params })
+          const response = await firstValueFrom(response$)
+
+          const distanceData = response.data?.rows?.[0]?.elements?.[0]?.distance
+          if (distanceData) {
+            distances.push({
+              parkingLotId: parkingId, // Use actual ParkingID
+              distance: distanceData,
+            })
+          }
+        } catch (error) {
+          console.error(`Error fetching distance from parking lot ${parkingId}:`, error.message)
+        }
       }
     }
     distances.sort((a, b) => a.distance.value - b.distance.value)
