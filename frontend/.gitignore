@@ -23,5 +23,8 @@ logs
 .env.*
 !.env.example
 
+# Package lock
+package-lock.json
+
 # Cursor rules
 .cursor/ 
