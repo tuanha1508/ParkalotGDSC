@@ -1,6 +1,5 @@
 {
   "framework": "nuxtjs",
   "buildCommand": "rm -rf node_modules package-lock.json && npm install && npm run build",
-  "outputDirectory": ".output/public",
-  "nodeVersion": "18.x"
+  "outputDirectory": ".output/public"
 } 
