@@ -18,22 +18,13 @@
           
           <client-only>
             <p 
-              ref="descriptionRef"
-              v-motion 
-              :initial="{ opacity: 0, y: 30 }" 
-              :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 500, delay: 100 } }"
-              class="text-sm sm:text-base text-gray-300 mb-8"
-            >
-              Our app helps you find available parking spots in real-time, saving you time and reducing stress. Know exactly where to park before you arrive.
-            </p>
-            <p 
               ref="additionalInfoRef"
               v-motion 
               :initial="{ opacity: 0, y: 30 }" 
-              :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 500, delay: 150 } }"
+              :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 500, delay: 100 } }"
               class="text-sm text-gray-400 mb-6"
             >
-              Parkalot uses advanced IoT sensors and AI algorithms to monitor parking availability and guide drivers to the nearest open space, reducing congestion and emissions while saving valuable time.
+              Parkalot uses IoT sensors and AI to guide drivers to available parking spaces, reducing congestion and saving time.
             </p>
           </client-only>
           
@@ -122,7 +113,6 @@ import { ref } from 'vue'
 
 // Refs for motion animations
 const titleRef = ref(null)
-const descriptionRef = ref(null)
 const additionalInfoRef = ref(null)
 const buttonsRef = ref(null)
 const logoRef = ref(null)
@@ -130,7 +120,6 @@ const demoRef = ref(null)
 
 // Set up motion animations
 useMotion(titleRef)
-useMotion(descriptionRef)
 useMotion(additionalInfoRef)
 useMotion(buttonsRef)
 useMotion(logoRef)

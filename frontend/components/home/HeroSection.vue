@@ -228,7 +228,6 @@ onActivated(() => {
   font-weight: bold;
   color: transparent;
   -webkit-text-stroke: 2px rgba(255,255,255,0.8);
-  text-stroke: 2px rgba(255,255,255,0.8);
   background-clip: text;
   -webkit-background-clip: text;
   background-image: url('/video-background.jpg');
@@ -254,34 +253,34 @@ onActivated(() => {
 /* Mobile-specific adjustments */
 @media (max-width: 640px) {
   .responsive-text {
-    font-size: clamp(140px, 44vw, 280px);
-    stroke-width: 3.2px;
+    font-size: clamp(120px, 38vw, 240px);
+    stroke-width: 3px;
   }
   
   .video-mask-container {
-    min-height: 260px;
-    height: 48vh;
+    min-height: 240px;
+    height: 45vh;
   }
 }
 
 /* iPhone-specific fixes */
 @media screen and (max-width: 428px) {
   .responsive-text {
-    font-size: clamp(150px, 50vw, 300px);
-    stroke-width: 3.8px;
+    font-size: clamp(120px, 42vw, 250px);
+    stroke-width: 3.5px;
   }
   
   .video-mask-container {
-    min-height: 280px;
-    height: 55vh;
+    min-height: 250px;
+    height: 50vh;
   }
 }
 
 /* Small iPhone fixes */
 @media screen and (max-width: 375px) {
   .responsive-text {
-    font-size: clamp(140px, 48vw, 280px);
-    stroke-width: 3.5px;
+    font-size: clamp(110px, 40vw, 230px);
+    stroke-width: 3px;
   }
 }
 
