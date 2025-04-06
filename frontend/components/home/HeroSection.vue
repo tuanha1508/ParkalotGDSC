@@ -35,9 +35,12 @@
             >
               <div class="relative group inline-block">
                 <NuxtLink to="/park" class="no-underline">
-                  <button class="custom-button get-started-btn">
+                  <UButton 
+                    size="sm" 
+                    class="text-xs font-medium bg-white !text-black rounded-full hover:bg-gray-100 transition-all duration-300 w-full sm:w-auto px-6 py-2"
+                  >
                     Get Started
-                  </button>
+                  </UButton>
                 </NuxtLink>
               </div>
               
@@ -47,6 +50,7 @@
                     Explore Features →
                   </button>
                 </NuxtLink>
+                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-[2px] bg-white rounded-full transition-all duration-300 w-0 group-hover:w-4/5"></span>
               </div>
             </div>
           </client-only>

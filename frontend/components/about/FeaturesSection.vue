@@ -6,8 +6,8 @@
         <div>
           <h3 class="text-xl font-medium mb-4">Live Parking Slot Tracking</h3>
           <p class="text-white/60 mb-8">See exactly how many parking spots are available in each lot or garage in real-time, eliminating guesswork.</p>
-          <div class="rounded-lg border border-white/20 bg-black overflow-hidden">
-            <ParkingSlots />
+          <div class="rounded-lg border border-white/20 bg-black overflow-hidden h-64">
+            <ParkingSlotsEmbed />
           </div>
         </div>
         <div>
@@ -51,7 +51,7 @@
 
 <script setup lang="ts">
 // Features section component for the About page
-import ParkingSlots from '~/components/dashboard/ParkingSlots.vue'
+import ParkingSlotsEmbed from '~/components/about/ParkingSlotsEmbed.vue'
 import PermitTypeFilter from '../../components/parking/PermitTypeFilter.vue'
 import SpaceDetails from '../../components/parking/SpaceDetails.vue'
 import NearestParkingMap from '../../components/parking/NearestParkingMap.vue'

@@ -29,7 +29,7 @@
             <span>Basic feature 3</span>
           </li>
         </ul>
-        <UButton color="gray" variant="solid" block>Get Started</UButton>
+        <UButton color="gray" variant="solid" class="bg-white !text-black hover:bg-gray-100" block>Get Started</UButton>
       </div>
       
       <!-- Pro Plan -->
@@ -60,7 +60,7 @@
             <span>Pro feature 3</span>
           </li>
         </ul>
-        <UButton color="primary" variant="solid" block>Get Started</UButton>
+        <UButton color="primary" variant="solid" class="bg-white !text-black hover:bg-gray-100" block>Get Started</UButton>
       </div>
       
       <!-- Enterprise Plan -->
