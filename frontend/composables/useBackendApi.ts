@@ -104,6 +104,17 @@ export function useBackendApi() {
       
       // Validate the data structure
       if (!Array.isArray(data)) {
+        console.error('Invalid data format received:', data)
+        if (data && typeof data === 'object') {
+          // If data is an object but not array, it might be a wrapped response
+          if (Array.isArray(data.results)) {
+            return data.results
+          }
+          // Check if it's an error response
+          if (data.error) {
+            throw new Error(`Backend error: ${data.error}`)
+          }
+        }
         throw new Error('Invalid data format received from backend')
       }
       
@@ -206,8 +217,6 @@ export function useBackendApi() {
       try {
         const response = await fetch(url, { 
           signal: controller.signal,
-          method: 'GET',
-          mode: 'cors',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
