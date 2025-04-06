@@ -12,7 +12,7 @@
         <div class="w-full text-center">
           <!-- Add a video container that will be masked by the text -->
           <div class="video-mask-container relative">
-            <svg class="text-mask-svg" width="100%" height="100%" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid meet">
+            <svg class="text-mask-svg" width="100%" height="100%">
               <!-- Define the mask using the text -->
               <defs>
                 <mask id="text-mask">
@@ -35,22 +35,18 @@
               
               <!-- Apply the mask to a rectangle with the video as background -->
               <foreignObject width="100%" height="100%" mask="url(#text-mask)" style="overflow: hidden;">
-                <div 
+                <video 
+                  ref="videoElement"
                   xmlns="http://www.w3.org/1999/xhtml"
-                  class="video-container w-full h-full"
+                  class="w-full h-full object-cover"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  style="pointer-events: none;"
                 >
-                  <video 
-                    ref="videoElement"
-                    class="w-full h-full object-cover"
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                    style="pointer-events: none; min-width: 100%; min-height: 100%;"
-                  >
-                    <source src="/video-background.mp4" type="video/mp4" />
-                  </video>
-                </div>
+                  <source src="/video-background.mp4" type="video/mp4" />
+                </video>
               </foreignObject>
               
               <!-- Add a thin outline around the text for better visibility -->
@@ -69,11 +65,6 @@
                 Parkalot
               </text>
             </svg>
-            
-            <!-- Fallback for iOS devices that might have issues with SVG masks -->
-            <div class="ios-fallback">
-              <h1 class="parkalot-title">Parkalot</h1>
-            </div>
           </div>
           
           <client-only>
@@ -87,21 +78,22 @@
                 <NuxtLink to="/park" class="no-underline">
                   <UButton 
                     size="sm" 
-                    class="text-xs font-medium bg-white !text-black rounded-full hover:bg-gray-100 transition-all duration-300 w-full sm:w-auto px-6 py-2"
+                    class="text-xs font-medium bg-white !text-black rounded-full hover:bg-gray-100 transition-all duration-300 w-full sm:w-auto px-6 py-2 group-hover:scale-105 transform"
                     style="background-color: #FFFFFF !important; color: #000000 !important; border: none !important;"
                   >
                     Get Started
                   </UButton>
                 </NuxtLink>
+                <div class="absolute inset-0 bg-gradient-to-r from-primary-500/60 to-accent/60 rounded-full opacity-0 group-hover:opacity-30 -z-10 group-hover:scale-110 transition-all duration-300"></div>
               </div>
               
               <div class="relative group inline-block">
                 <NuxtLink to="/about" class="no-underline">
-                  <button class="custom-button explore-btn relative overflow-hidden transition-all duration-300">
+                  <button class="custom-button explore-btn relative overflow-hidden group-hover:tracking-wider transition-all duration-300">
                     <span class="relative z-10">Explore Features →</span>
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300 rounded-full"></span>
                   </button>
                 </NuxtLink>
-                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-[1px] bg-white rounded-full transition-all duration-300 w-0 group-hover:w-4/5"></span>
               </div>
             </div>
           </client-only>
@@ -131,14 +123,6 @@ const playVideo = () => {
 // Play video when component is mounted
 onMounted(() => {
   playVideo();
-  
-  // Check if device is iOS
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
-  
-  // Add iOS class to body if needed
-  if (isIOS) {
-    document.body.classList.add('ios-device');
-  }
 });
 
 // Play video when returning to this component with keep-alive
@@ -167,20 +151,21 @@ onActivated(() => {
 .video-mask-container {
   position: relative;
   width: 100%;
+  height: auto;
   min-height: 200px;
   max-height: 550px;
   height: 40vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0;
-  overflow: hidden;
+  margin-bottom: 0; /* Remove bottom margin */
+  overflow: hidden; /* Ensure nothing spills outside */
 }
 
 .text-mask-svg {
   max-width: 100%;
   overflow: visible;
-  display: block;
+  display: block; /* Prevent extra space below the SVG */
   height: 100%;
 }
 
@@ -189,99 +174,48 @@ onActivated(() => {
 }
 
 .responsive-text {
-  font-size: clamp(150px, 33vw, 580px);
-  stroke-width: clamp(2.1px, 0.42vw, 5.2px);
-}
-
-/* Desktop and larger screens */
-@media (min-width: 1024px) {
-  .responsive-text {
-    font-size: clamp(150px, 23vw, 580px);
-    stroke-width: clamp(2px, 0.38vw, 4.8px);
-  }
-}
-
-/* Larger desktop screens */
-@media (min-width: 1440px) {
-  .responsive-text {
-    font-size: clamp(150px, 20vw, 580px);
-  }
-}
-
-/* iOS fallback styles */
-.ios-fallback {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-}
-
-.parkalot-title {
-  font-family: 'Gugi', sans-serif;
-  font-size: clamp(60px, 15vw, 300px);
-  font-weight: bold;
-  color: transparent;
-  -webkit-text-stroke: 2px rgba(255,255,255,0.8);
-  background-clip: text;
-  -webkit-background-clip: text;
-  background-image: url('/video-background.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-/* Style for iOS devices */
-.ios-device .ios-fallback {
-  display: flex;
-}
-
-.ios-device .text-mask-svg {
-  opacity: 0; /* Hide SVG mask on iOS */
-}
-
-/* Video container for better iOS compatibility */
-.video-container {
-  position: relative;
-  overflow: hidden;
+  font-size: clamp(100px, 20vw, 400px);
+  stroke-width: clamp(1px, 0.25vw, 3px);
 }
 
 /* Mobile-specific adjustments */
 @media (max-width: 640px) {
   .responsive-text {
-    font-size: clamp(120px, 38vw, 240px);
-    stroke-width: 3px;
+    font-size: clamp(30px, 10vw, 150px);
+    stroke-width: 0.8px;
   }
   
   .video-mask-container {
-    min-height: 240px;
-    height: 45vh;
+    min-height: 120px;
+    height: 25vh;
   }
 }
 
-/* iPhone-specific fixes */
-@media screen and (max-width: 428px) {
-  .responsive-text {
-    font-size: clamp(120px, 42vw, 250px);
-    stroke-width: 3.5px;
-  }
-  
-  .video-mask-container {
-    min-height: 250px;
-    height: 50vh;
-  }
+/* Remove old styles that are no longer needed */
+/* .video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* Small iPhone fixes */
-@media screen and (max-width: 375px) {
-  .responsive-text {
-    font-size: clamp(110px, 40vw, 230px);
-    stroke-width: 3px;
-  }
+.text-mask {
+  position: relative;
+  mix-blend-mode: source-over;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+  background: transparent;
+  -webkit-mask-image: linear-gradient(#000, #000);
+  -webkit-mask-clip: text;
+  mask-image: linear-gradient(#000, #000);
+  mask-clip: text;
 }
+
+.text-mask::before {
+  content: none;
+} */
 
 .get-started-btn {
   background-color: #FFFFFF !important;

@@ -10,9 +10,6 @@
       >
         <p class="text-sm text-white/60">Created by the world's best product teams</p>
         <h2 class="text-xl font-semibold mt-2">Trusted by thousands of parking operators worldwide</h2>
-        <p class="text-sm mt-2 text-white/80 max-w-md">
-          Parkalot has transformed parking management across cities, universities, and corporate campuses, bringing efficiency and cost savings to operators and convenience to drivers.
-        </p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
         <div 

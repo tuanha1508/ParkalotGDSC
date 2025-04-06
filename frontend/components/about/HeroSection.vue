@@ -96,10 +96,6 @@
           <div class="rounded-lg overflow-hidden shadow-xl shadow-black/30 border border-neutral-800 flex items-center justify-center h-80 bg-black">
             <p class="text-white/60">Dashboard Preview</p>
           </div>
-          <p class="text-sm text-gray-400 mt-4 text-center">
-            Our intuitive dashboard gives you a bird's-eye view of parking availability across all locations.
-            Monitor real-time occupancy, historical trends, and user activity in one place.
-          </p>
         </div>
       </client-only>
 
