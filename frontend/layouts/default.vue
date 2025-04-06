@@ -92,6 +92,9 @@
         </ClientOnly>
       </div>
     </footer>
+
+    <!-- Add the ChatbotUI component here -->
+    <ChatbotUI />
   </div>
 </template>
 
