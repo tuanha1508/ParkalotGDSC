@@ -185,8 +185,8 @@ html, body {
 }
 
 /* Button styling */
-.u-button,
-[class*="u-button"] {
+.u-button:not([class*="bg-"]),
+[class*="u-button"]:not([class*="bg-"]) {
   background-color: #000000 !important;
   color: #FFFFFF !important;
   border: 1px solid #FFFFFF !important;
@@ -194,8 +194,8 @@ html, body {
   transition: all 0.3s ease !important;
 }
 
-.u-button:hover,
-[class*="u-button"]:hover {
+.u-button:not([class*="bg-"]):hover,
+[class*="u-button"]:not([class*="bg-"]):hover {
   background-color: #FFFFFF !important;
   color: #000000 !important;
 }
