@@ -6,31 +6,43 @@
         <div class="w-full md:w-1/2 md:text-left text-center">
           <client-only>
             <h1 
+              ref="titleRef"
               v-motion 
               :initial="{ opacity: 0, y: 30 }" 
-              :enter="{ opacity: 1, y: 0, transition: { delay: 300 } }"
+              :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 500 } }"
               class="text-2xl sm:text-3xl md:text-4xl font-semibold text-white mb-4 leading-tight tracking-tight whitespace-nowrap"
             >
-              Never circle for parking again
+              Park smarter, not harder
             </h1>
           </client-only>
           
           <client-only>
             <p 
+              ref="descriptionRef"
               v-motion 
               :initial="{ opacity: 0, y: 30 }" 
-              :enter="{ opacity: 1, y: 0, transition: { delay: 400 } }"
+              :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 500, delay: 100 } }"
               class="text-sm sm:text-base text-gray-300 mb-8"
             >
               Our app helps you find available parking spots in real-time, saving you time and reducing stress. Know exactly where to park before you arrive.
+            </p>
+            <p 
+              ref="additionalInfoRef"
+              v-motion 
+              :initial="{ opacity: 0, y: 30 }" 
+              :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 500, delay: 150 } }"
+              class="text-sm text-gray-400 mb-6"
+            >
+              Parkalot uses advanced IoT sensors and AI algorithms to monitor parking availability and guide drivers to the nearest open space, reducing congestion and emissions while saving valuable time.
             </p>
           </client-only>
           
           <client-only>
             <div 
+              ref="buttonsRef"
               v-motion 
               :initial="{ opacity: 0, y: 30 }" 
-              :enter="{ opacity: 1, y: 0, transition: { delay: 500 } }"
+              :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 500, delay: 200 } }"
               class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start items-center"
             >
               <div class="relative group inline-block">
@@ -64,9 +76,10 @@
         <div class="w-full md:w-1/2 flex justify-center md:justify-end">
           <client-only>
             <div 
+              ref="logoRef"
               v-motion 
               :initial="{ opacity: 0, scale: 0.9 }" 
-              :enter="{ opacity: 1, scale: 1, transition: { delay: 600 } }"
+              :visibleOnce="{ opacity: 1, scale: 1, transition: { duration: 500, delay: 300 } }"
               class="relative max-w-md w-full"
             >
               <img 
@@ -82,15 +95,20 @@
 
       <client-only>
         <div 
+          ref="demoRef"
           v-motion 
           :initial="{ opacity: 0, y: 40 }" 
-          :enter="{ opacity: 1, y: 0, transition: { delay: 700 } }"
+          :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 500, delay: 400 } }"
           class="max-w-5xl mx-auto relative mt-12"
           id="demoImage"
         >
           <div class="rounded-lg overflow-hidden shadow-xl shadow-black/30 border border-neutral-800 flex items-center justify-center h-80 bg-black">
             <p class="text-white/60">Dashboard Preview</p>
           </div>
+          <p class="text-sm text-gray-400 mt-4 text-center">
+            Our intuitive dashboard gives you a bird's-eye view of parking availability across all locations.
+            Monitor real-time occupancy, historical trends, and user activity in one place.
+          </p>
         </div>
       </client-only>
 
@@ -99,6 +117,25 @@
 </template>
 
 <script setup lang="ts">
+import { useMotion } from '@vueuse/motion'
+import { ref } from 'vue'
+
+// Refs for motion animations
+const titleRef = ref(null)
+const descriptionRef = ref(null)
+const additionalInfoRef = ref(null)
+const buttonsRef = ref(null)
+const logoRef = ref(null)
+const demoRef = ref(null)
+
+// Set up motion animations
+useMotion(titleRef)
+useMotion(descriptionRef)
+useMotion(additionalInfoRef)
+useMotion(buttonsRef)
+useMotion(logoRef)
+useMotion(demoRef)
+
 // Hero section component for the About page
 const scrollToImage = () => {
   const element = document.getElementById('demoImage');
