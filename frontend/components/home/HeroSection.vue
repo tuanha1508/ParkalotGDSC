@@ -178,6 +178,19 @@ onActivated(() => {
   stroke-width: clamp(1px, 0.25vw, 3px);
 }
 
+/* Mobile-specific adjustments */
+@media (max-width: 640px) {
+  .responsive-text {
+    font-size: clamp(30px, 10vw, 150px);
+    stroke-width: 0.8px;
+  }
+  
+  .video-mask-container {
+    min-height: 120px;
+    height: 25vh;
+  }
+}
+
 /* Remove old styles that are no longer needed */
 /* .video-background {
   position: absolute;
