@@ -1,15 +1,16 @@
-import { Controller, Get, Query } from '@nestjs/common'
-import { HttpService } from '@nestjs/axios'
-import { ConfigService } from '@nestjs/config'
-import { firstValueFrom } from 'rxjs'
-import {GoogleModule} from './google.module'
-@Controller('distance')
-export class GoogleRoutesController {
+import { Injectable, Query } from '@nestjs/common';
+import { DistanceModule } from './distance.module';
+import { firstValueFrom } from 'rxjs';
+import { HttpService } from '@nestjs/axios';
+import { ConfigService } from '@nestjs/config';
+import path from 'path';
+import * as fs from 'fs'
+@Injectable()
+export class DistanceService {
   constructor(
     private readonly httpService: HttpService,
     private readonly configService: ConfigService  // Inject ConfigService
-  ) {
-  }
+  ) {}
   // input: param destination: where the user want to go to
   //        param permit: type of permit that the user have
   // return: distance from one parking lot
@@ -29,10 +30,18 @@ export class GoogleRoutesController {
   //           "value": 422
   //       }
   //   }]
-  @Get()
-
-  async getDistances(@Query('destination') destination: string,
-                     @Query('permit') permit: string) {
+  parseJSON(path: string) {
+    try {
+      const data = fs.readFileSync(path, 'utf8'); // ✅ fs used correctly here
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+      return JSON.parse(data);
+    } catch (error) {
+      console.error('Error reading or parsing park_data.json:', error);
+      return []; // Fallback to empty array
+    }
+  }
+  async get_distances(@Query('destination') destination: string,
+                      @Query('permit') permit: string) {
     const apiKey = this.configService.get<string>('GOOGLE_MAPS_API_KEY')
 
     if (!apiKey) {
@@ -40,9 +49,7 @@ export class GoogleRoutesController {
     }
 
     const url = 'https://maps.googleapis.com/maps/api/distancematrix/json'
-
-    const parsedData = GoogleModule.parseJSON('src/park_data.json')
-
+    const parsedData = this.parseJSON('src/park_data.json')
     const distances: any[] = []
 
     for (const parking of parsedData) {
@@ -76,4 +83,5 @@ export class GoogleRoutesController {
     distances.sort((a, b) => a.distance.value - b.distance.value)
     return distances
   }
+
 }
