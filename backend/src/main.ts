@@ -5,17 +5,11 @@ async function bootstrap() {
   try {
     const app = await NestFactory.create(AppModule);
     
-    // Enable CORS for the frontend
+    // Enable CORS for all origins
     app.enableCors({
-      origin: [
-        process.env.FRONTEND_URL || 'http://localhost:3001',
-        'https://parkalot.vercel.app', // Add your production Vercel domain here
-        'https://parkalot-gdsc-client.vercel.app', // Add the GDSC client domain
-        'https://parkalot-4hjjg3jvk-tuanhai508s-projects.vercel.app', // Add the specific subdomain from the error
-        /\.vercel\.app$/ // Allow all subdomains of vercel.app
-      ],
+      origin: '*',
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-      credentials: true,
+      credentials: false,
     });
     
     console.log('Starting server on port:', process.env.PORT ?? 3000);
