@@ -35,25 +35,17 @@
             >
               <div class="relative group inline-block">
                 <NuxtLink to="/park" class="no-underline">
-                  <UButton 
-                    size="sm" 
-                    class="text-xs font-medium bg-white !text-black rounded-full hover:bg-gray-100 w-full sm:w-auto px-6 py-2 border-0 shadow-none"
-                    color="white"
-                  >
+                  <button class="custom-button get-started-btn">
                     Get Started
-                  </UButton>
+                  </button>
                 </NuxtLink>
               </div>
               
               <div class="relative group inline-block">
                 <NuxtLink to="/about" class="no-underline">
-                  <UButton 
-                    size="sm"
-                    variant="ghost" 
-                    class="text-xs font-medium !text-white hover:text-gray-300 w-full sm:w-auto px-3 py-1 no-underline border-0 shadow-none outline-none focus:outline-none focus:ring-0"
-                  >
+                  <button class="custom-button explore-btn">
                     Explore Features →
-                  </UButton>
+                  </button>
                 </NuxtLink>
               </div>
             </div>
@@ -105,25 +97,38 @@
 </script>
 
 <style scoped>
-/* Force consistent button styling */
-:deep(.u-button) {
+.custom-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-weight: 500;
-  letter-spacing: 0.025em;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-:deep(.u-button--white) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
+.get-started-btn {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  box-shadow: none;
 }
 
-:deep(.u-button--ghost) {
-  background-color: transparent;
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+.get-started-btn:hover {
+  background-color: #F3F4F6 !important;
+}
+
+.explore-btn {
+  background-color: transparent !important;
+  color: #FFFFFF !important;
+  padding: 0.25rem 0.75rem;
+}
+
+.explore-btn:hover {
+  color: #D1D5DB !important;
 }
 </style> 
