@@ -70,16 +70,26 @@
             
             <!-- iOS Fallback: Hidden on non-iOS devices, visible only on iOS -->
             <div class="ios-fallback">
-              <div class="ios-text">Parkalot</div>
-              <video 
-                class="ios-video"
-                autoplay
-                muted
-                loop
-                playsinline
-              >
-                <source src="/video-background.mp4" type="video/mp4" />
-              </video>
+              <!-- Primary approach: Use CSS mask directly on the container -->
+              <div class="ios-mask-container">
+                <!-- Video background -->
+                <video 
+                  ref="iosVideoElement"
+                  class="ios-video"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                >
+                  <source src="/video-background.mp4" type="video/mp4" />
+                </video>
+                
+                <!-- Text outline helps show the boundaries of the text shape -->
+                <div class="ios-text-outline">Parkalot</div>
+              </div>
+              
+              <!-- Backup approach: simple text overlay if masking fails -->
+              <div class="ios-text-backup">Parkalot</div>
             </div>
           </div>
           
@@ -122,16 +132,31 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onActivated } from 'vue';
+import { ref, onMounted, onActivated, onBeforeMount } from 'vue';
 
 // Reference to the video element
 const videoElement = ref<HTMLVideoElement | null>(null);
+const iosVideoElement = ref<HTMLVideoElement | null>(null);
+const isIOS = ref(false);
+
+// Check if device is iOS
+onBeforeMount(() => {
+  // Detect iOS devices
+  isIOS.value = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+});
 
 // Function to play the video
 const playVideo = () => {
   if (videoElement.value) {
     videoElement.value.play().catch(error => {
       console.warn('Could not play video:', error);
+    });
+  }
+  
+  if (isIOS.value && iosVideoElement.value) {
+    iosVideoElement.value.play().catch(error => {
+      console.warn('Could not play iOS video:', error);
     });
   }
 };
@@ -206,6 +231,24 @@ onActivated(() => {
   overflow: hidden;
 }
 
+.ios-mask-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Apply mask to the container so it affects the video inside */
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 500 200"><text text-anchor="middle" x="250" y="120" font-size="120" font-family="Arial, sans-serif" font-weight="bold">Parkalot</text></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 500 200"><text text-anchor="middle" x="250" y="120" font-size="120" font-family="Arial, sans-serif" font-weight="bold">Parkalot</text></svg>');
+  -webkit-mask-size: 90% auto;
+  mask-size: 90% auto;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
 .ios-video {
   position: absolute;
   top: 0;
@@ -214,22 +257,37 @@ onActivated(() => {
   height: 100%;
   object-fit: cover;
   z-index: 1;
-  opacity: 0.5; /* Semi-transparent */
 }
 
-.ios-text {
+.ios-text-outline {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  z-index: 3;
   font-family: 'Gugi', sans-serif;
-  font-weight: bold;
+  font-weight: 900;
+  font-size: clamp(80px, 15vw, 300px);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+  text-align: center;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.ios-text-backup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; /* Hidden by default, shown only if needed */
+  align-items: center;
+  justify-content: center;
+  font-family: 'Gugi', sans-serif;
+  font-weight: 900;
   font-size: clamp(80px, 15vw, 300px);
   color: white;
-  z-index: 2;
   text-align: center;
-  mix-blend-mode: overlay;
-  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.5);
 }
 
 /* Mobile-specific adjustments */
@@ -244,7 +302,8 @@ onActivated(() => {
     height: 25vh;
   }
   
-  .ios-text {
+  .ios-text-outline,
+  .ios-text-backup {
     font-size: clamp(30px, 10vw, 120px);
   }
 }
@@ -257,6 +316,22 @@ onActivated(() => {
   
   .ios-fallback {
     display: block; /* Show the iOS fallback on iOS */
+  }
+  
+  /* Fallback for older iOS versions that might not support mask-image well */
+  @supports not (mask-image: url('')) {
+    .ios-mask-container {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+    
+    .ios-text-outline {
+      display: none;
+    }
+    
+    .ios-text-backup {
+      display: flex;
+    }
   }
   
   .responsive-text {
