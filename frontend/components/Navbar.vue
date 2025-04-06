@@ -164,8 +164,7 @@ const isOpen = ref(false)
 const navLinks = [
   { to: '/', text: 'Home' },
   { to: '/about', text: 'About' },
-  { to: '/park', text: 'Park Here' },
-  { to: '/admin/parks', text: 'Admin Parks' }
+  { to: '/park', text: 'Park Here' }
 ]
 
 // Check if route is active

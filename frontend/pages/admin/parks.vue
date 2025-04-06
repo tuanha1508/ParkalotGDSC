@@ -101,6 +101,7 @@
             <div class="mt-4">
               <button 
                 class="bg-white hover:bg-gray-200 text-black font-medium px-4 py-1.5 rounded-full transition-all duration-200 shadow-sm text-center w-full"
+                @click="navigateToParkDashboard(lot.id)"
               >
                 View Details
               </button>
@@ -122,14 +123,21 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useParkingData } from '../../composables/useParkingData'
+import { useRouter } from 'vue-router'
 
 definePageMeta({
   layout: 'default',
 })
 
+const router = useRouter()
 const parkingData = useParkingData()
 const parkingLots = ref<any[]>([])
 const isLoading = ref(true)
+
+// Navigate to park dashboard with lot ID
+const navigateToParkDashboard = (lotId: string | number) => {
+  router.push(`/admin/park-dashboard?id=${lotId}`)
+}
 
 // Load all parking lots without filtering
 const loadAllParkingLots = async () => {

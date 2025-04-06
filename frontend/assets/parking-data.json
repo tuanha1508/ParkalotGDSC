@@ -1,795 +1,882 @@
 [
-    {
-      "ParkingID": "1",
-      "PermitTypes": "E",
-      "Location": "Near Education EDU, Center For Econ. Education CEE, David C.Anchin Center, Library LIB, Cooper Hall (Arts & Science CPR), John & Grace Allen Building ALN",
-      "TotalSpaces": 326,
-      "Available": 326,
-      "Address": "28.060694, -82.412000",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "2A",
-      "PermitTypes": "GZ",
-      "Location": "Near Bioscience BSF, Interdisciplinary Sciences ISA, John & Grace Allen Building ALN, Library LIB, CAS Multidisciplinary Complex CMC",
-      "TotalSpaces": 210,
-      "Available": 210,
-      "Address": "28.060361, -82.414250",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "2C",
-      "PermitTypes": "GZ",
-      "Location": "Near CAS Multidisciplinary Complex CMC, Engineering (Edgar W Kopp) ENG, Engineering III ENC, Engineering II ENB",
-      "TotalSpaces": 210,
-      "Available": 210,
-      "Address": "28.059500, -82.414722",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "3A",
-      "PermitTypes": "E",
-      "Location": "Near Theatre Center TAR, Theatre 1 TAT, Dance FAD, Theatre 2 THR, Marshall Student Center MSC",
-      "TotalSpaces": 105,
-      "Available": 105,
-      "Address": "28.064444, -82.414583",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "3B",
-      "PermitTypes": "D,E,S",
-      "Location": "Near Dance FAD, Theatre 2 THR, Theatre Centre TAR, Theatre 1 TAT, Contemporary Art Museum CAM",
-      "TotalSpaces": 115,
-      "Available": 115,
-      "Address": "28.064333, -82.415194",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "3C",
-      "PermitTypes": "E,S",
-      "Location": "Near Contemporary Art Museum CAM, Dance FAD, Theatre 2 THR, Fine Arts Studio FAS, Fine Arts Building FAH",
-      "TotalSpaces": 198,
-      "Available": 198,
-      "Address": "28.064250, -82.415806",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "3D",
-      "PermitTypes": "E,S",
-      "Location": "Near Fine Arts Studio FAS, Contemporary Art Museum CAM, Fine Arts Building FAH",
-      "TotalSpaces": 107,
-      "Available": 107,
-      "Address": "28.064528, -82.416583",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "3E",
-      "PermitTypes": "E",
-      "Location": "Near School of Music MUS, Fine Arts Studio FAS",
-      "TotalSpaces": 18,
-      "Available": 18,
-      "Address": "28.064444, -82.417250",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "4",
-      "PermitTypes": "E",
-      "Location": "Near PPA-USF Post Office, PPC, FPC, Facilities Management OPM",
-      "TotalSpaces": 40,
-      "Available": 40,
-      "Address": "28.065194, -82.414528",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "5A",
-      "PermitTypes": "R",
-      "Location": "Near Student Healh Services",
-      "TotalSpaces": 121,
-      "Available": 121,
-      "Address": "28.064083, -82.412111",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "5B",
-      "PermitTypes": "R",
-      "Location": "Near Argos Center (RAR), Kosove Hall (RKO), Holly Drive Apartments-Building D, E, F",
-      "TotalSpaces": 21,
-      "Available": 21,
-      "Address": "28.064889, -82.410889",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "5D",
-      "PermitTypes": "E",
-      "Location": "Near Maple Suites B (MPB), Holly Drive Apartments-Building G (HAG), Maple Multi-Purpose Building (MPC), Maple Life/Learning Center (MPD)",
-      "TotalSpaces": 50,
-      "Available": 50,
-      "Address": "28.065444, -82.409222",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "5E",
-      "PermitTypes": "R",
-      "Location": "Near Beta Hall (RBE)",
-      "TotalSpaces": 168,
-      "Available": 168,
-      "Address": "28.064417, -82.408500",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "6",
-      "PermitTypes": "D, E, S",
-      "Location": "Near the REC, Lee Roy Selmon Athletic Center (ATH), Physical Education Building (PED)",
-      "TotalSpaces": 533,
-      "Available": 533,
-      "Address": "28.060722, -82.406278",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "7A",
-      "PermitTypes": "E",
-      "Location": "Near Behavioral Sciences Building (BEH), WUSF Radio Building (WRB)",
-      "TotalSpaces": 178,
-      "Available": 178,
-      "Address": "28.062250, -82.411056",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "7B",
-      "PermitTypes": "D, E",
-      "Location": "Near Faculty Office Building (FAO), Stavros Center For Economic Education (CEE)",
-      "TotalSpaces": 118,
-      "Available": 118,
-      "Address": "28.061556, -82.410833",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "7C",
-      "PermitTypes": "E",
-      "Location": "Near Student Services Building (SVC), WUSF Radio Building (WRB), WUSF Television Building (TVB)",
-      "TotalSpaces": 30,
-      "Available": 30,
-      "Address": "28.061972, -82.411944",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "8A",
-      "PermitTypes": "E",
-      "Location": "Near Science Center (SCA), Juniper Poplar Hall (JPH)",
-      "TotalSpaces": 92,
-      "Available": 92,
-      "Address": "28.060361, -82.417083",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "8B",
-      "PermitTypes": "D, E",
-      "Location": "Near Edgar W Kopp Building (Engineering I) (ENG), Glenn Burdick Building (Engineering II) (ENB)",
-      "TotalSpaces": 276,
-      "Available": 276,
-      "Address": "28.059667, -82.417028",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "8C",
-      "PermitTypes": "E, S",
-      "Location": "Near Edgar W Kopp Building (Engineering I) (ENG), Glenn Burdick Building (Engineering II) (ENB), Engineering Building III (ENC)",
-      "TotalSpaces": 249,
-      "Available": 249,
-      "Address": "28.058000, -82.414694",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "9A",
-      "PermitTypes": "E, S",
-      "Location": "Near Psychology/Communication Science & Disorders Building (PCD), Fine Arts Building (FAH)",
-      "TotalSpaces": 416,
-      "Available": 416,
-      "Address": "28.063056, -82.418111",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "9C",
-      "PermitTypes": "D, E",
-      "Location": "Near School Of Music Building (MUS), Moffitt Research Center (MRC), Central Receiving And Storage Building (CRS)",
-      "TotalSpaces": 99,
-      "Available": 99,
-      "Address": "28.065389, -82.418611",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "11",
-      "PermitTypes": "E",
-      "Location": "Near USF Health-Therapy Building (MDT)",
-      "TotalSpaces": 81,
-      "Available": 81,
-      "Address": "28.068083, -82.418556",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "12",
-      "PermitTypes": "D, E",
-      "Location": "Near USF Health-Therapy Building (MDT)",
-      "TotalSpaces": 220,
-      "Available": 220,
-      "Address": "28.068194, -82.419889",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "14",
-      "PermitTypes": "E",
-      "Location": "Near Central Receiving And Storage Building (CRS), arking & Transportation Building A (PTA), Engineering Research Building (ENR)",
-      "TotalSpaces": 0,
-      "Available": 0,
-      "Address": "28.066056, -82.417278",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "15",
-      "PermitTypes": "E",
-      "Location": "Near C. W. Bill Young Hall (CWY), The REC",
-      "TotalSpaces": 15,
-      "Available": 15,
-      "Address": "28.061028, -82.408278",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "16",
-      "PermitTypes": "R",
-      "Location": "Near Publix Supermarket (PBX)",
-      "TotalSpaces": 283,
-      "Available": 283,
-      "Address": "28.068639, -82.410611",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "17A",
-      "PermitTypes": "R",
-      "Location": "Near Castor Beach, Argos Center (RAR)",
-      "TotalSpaces": 117,
-      "Available": 117,
-      "Address": "28.063528, -82.410028",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "17B",
-      "PermitTypes": "R, S",
-      "Location": "Near Castor Beach, Argos Center (RAR)",
-      "TotalSpaces": 451,
-      "Available": 451,
-      "Address": "28.063417, -82.409083",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "18",
-      "PermitTypes": "D,E,GZ,HE,R,S,Y",
-      "Location": "Porter Family Indoor Performance Facility (IPF), Crosswinds Wesley Fndtn (WFC), Baptist Student Center (BPT), Chapel Center (CHA), Hillel Jewish Student Center (HIL)",
-      "TotalSpaces": 652,
-      "Available": 652,
-      "Address": "28.062889, -82.402778",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "19",
-      "PermitTypes": "D,E,HE,S",
-      "Location": "Near Hope Lodge - American Cancer Society (ACS), Health Partnership Complex (HPC)",
-      "TotalSpaces": 477,
-      "Available": 477,
-      "Address": "28.061917, -82.420250",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "20",
-      "PermitTypes": "E,R,S",
-      "Location": "Near USF Credit Union (CRU)",
-      "TotalSpaces": 229,
-      "Available": 229,
-      "Address": "28.066778, -82.413889",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "21",
-      "PermitTypes": "E,S",
-      "Location": "Near PE Tennis Court, C. W. Bill Young Hall (CWY)",
-      "TotalSpaces": 112,
-      "Available": 112,
-      "Address": "28.062083, -82.408194",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "22A",
-      "PermitTypes": "D,E,S",
-      "Location": "Near Student Health and Wellness Center (SWC), Southeast Chiller Plant (SEC)",
-      "TotalSpaces": 50,
-      "Available": 50,
-      "Address": "28.059111, -82.407889",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "22D",
-      "PermitTypes": "D,E,S",
-      "Location": "Near Pam & Les Muma Basketball Center (BBP)",
-      "TotalSpaces": 553,
-      "Available": 553,
-      "Address": "28.057917, -82.407917",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "22E",
-      "PermitTypes": "D, E, S",
-      "Location": "Near Pam & Les Muma Basketball Center (BBP)",
-      "TotalSpaces": 364,
-      "Available": 364,
-      "Address": "28.057694, -82.406861",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "22F",
-      "PermitTypes": "D, E, S",
-      "Location": "Near Pam & Les Muma Basketball Center (BBP)",
-      "TotalSpaces": 196,
-      "Available": 196,
-      "Address": "28.057833, -82.405889",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "23A",
-      "PermitTypes": "E",
-      "Location": "Near Sam & Martha Gibbons Alumni Center (ALC), Patel Center For Global Solutions (CGS)",
-      "TotalSpaces": 134,
-      "Available": 134,
-      "Address": "28.056139, -82.409333",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "23B",
-      "PermitTypes": "D, E",
-      "Location": "Near Sam & Martha Gibbons Alumni Center (ALC), Patel Center For Global Solutions (CGS)",
-      "TotalSpaces": 134,
-      "Available": 134,
-      "Address": "28.056167, -82.408306",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "23T",
-      "PermitTypes": "D, E, S",
-      "Location": "Near Sam & Martha Gibbons Alumni Center (ALC), Patel Center For Global Solutions (CGS)",
-      "TotalSpaces": 131,
-      "Available": 131,
-      "Address": "28.056806, -82.409444",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "24",
-      "PermitTypes": "R",
-      "Location": "Near Juniper-Poplar Hall (JPH)",
-      "TotalSpaces": 314,
-      "Available": 314,
-      "Address": "28.060500, -82.418722",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "25",
-      "PermitTypes": "R",
-      "Location": "Near University Police Building (UPB), Auxiliary Services Building (AUX)",
-      "TotalSpaces": 178,
-      "Available": 178,
-      "Address": "28.067833, -82.408833",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "26",
-      "PermitTypes": "E",
-      "Location": "Near University Police Building (UPB), Auxiliary Services Building (AUX)",
-      "TotalSpaces": 51,
-      "Available": 51,
-      "Address": "28.068556, -82.408222",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "28",
-      "PermitTypes": "E",
-      "Location": "Near Facilities Planning And Construction Building (FPC), Maintenance Services Shop Addition (PPC)",
-      "TotalSpaces": 34,
-      "Available": 34,
-      "Address": "28.065639, -82.415056",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "29A",
-      "PermitTypes": "S",
-      "Location": "Near The Zimmerman School of Advertising and Mass Communications",
-      "TotalSpaces": 320,
-      "Available": 320,
-      "Address": "28.057861, -82.412194",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "29B",
-      "PermitTypes": "S",
-      "Location": "Near The Zimmerman School of Advertising and Mass Communications",
-      "TotalSpaces": 365,
-      "Available": 365,
-      "Address": "28.058639, -82.412222",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "30",
-      "PermitTypes": "GZ33",
-      "Location": "Near USF Health-Morsani College of Medicine (MDC), USF Health-Student Group Learning Building (MDL)",
-      "TotalSpaces": 76,
-      "Available": 76,
-      "Address": "28.062556, -82.425417",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "31",
-      "PermitTypes": "GZ33",
-      "Location": "Near USF Health-Morsani College of Medicine (MDC), USF Health-Student Group Learning Building (MDL)",
-      "TotalSpaces": 27,
-      "Available": 27,
-      "Address": "28.063056, -82.423611",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "32",
-      "PermitTypes": "E, S",
-      "Location": "Near Moffitt Clinical Support Building (MCS), Moffitt Faculty Office Building (MFB)",
-      "TotalSpaces": 342,
-      "Available": 342,
-      "Address": "28.063222, -82.422694",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "33",
-      "PermitTypes": "GZ33,AG33",
-      "Location": "Near MDN-USF HEALTH-NURSING BLDG",
-      "TotalSpaces": 540,
-      "Available": 540,
-      "Address": "28.064750, -82.422917",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "33T",
-      "PermitTypes": "S",
-      "Location": "Near MDN-USF HEALTH-NURSING BLDG",
-      "TotalSpaces": 50,
-      "Available": 50,
-      "Address": "28.065667, -82.422889",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "34",
-      "PermitTypes": "D,E,S",
-      "Location": "USF Health-Shared Student Administation Building (MDA)",
-      "TotalSpaces": 126,
-      "Available": 126,
-      "Address": "28.065528, -82.424111",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "35",
-      "PermitTypes": "R, S",
-      "Location": "Near Varsity Tennis Court, Track And Field Stadium (STA), Maple Suites A (MPA)",
-      "TotalSpaces": 384,
-      "Available": 384,
-      "Address": "28.064917, -82.407417",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "36",
-      "PermitTypes": "GZ36",
-      "Location": "Near C. H. Ferguson Hall (Business Administration)",
-      "TotalSpaces": 247,
-      "Available": 247,
-      "Address": "28.057861, -82.410806",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "37",
-      "PermitTypes": "E",
-      "Location": "Near Social Science Building (SOC), Behavioral Sciences Building (BEH)",
-      "TotalSpaces": 117,
-      "Available": 117,
-      "Address": "28.062139, -82.409417",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "38A",
-      "PermitTypes": "E,HE,S",
-      "Location": "Near College Of Behavioral & Community Sciences Building (MHC), USF Family Center (MHF)",
-      "TotalSpaces": 110,
-      "Available": 110,
-      "Address": "28.068028, -82.421306",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "38B",
-      "PermitTypes": "E, HE",
-      "Location": "Near John S. Curran MD, Children's Health Center (CMS), Samuel P. Bell, III Building (CPH)",
-      "TotalSpaces": 251,
-      "Available": 251,
-      "Address": "28.066833, -82.425361",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "38C",
-      "PermitTypes": "D,E,S",
-      "Location": "Near Northwest Education Complex (NEC)",
-      "TotalSpaces": 296,
-      "Available": 296,
-      "Address": "28.068417, -82.425222",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "38D",
-      "PermitTypes": "E,S",
-      "Location": "Near College Of Behavioral & Community Sciences Building (MHC), USF Family Center (MHF)",
-      "TotalSpaces": 63,
-      "Available": 63,
-      "Address": "28.067222, -82.422333",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "38E",
-      "PermitTypes": "E",
-      "Location": "Near College Of Behavioral & Community Sciences Building (MHC), USF Family Center (MHF)",
-      "TotalSpaces": 25,
-      "Available": 25,
-      "Address": "28.066944, -82.422833",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "38F",
-      "PermitTypes": "E,HE,S",
-      "Location": "Near John S. Curran MD, Children's Health Center (CMS), Samuel P. Bell, III Building (CPH)",
-      "TotalSpaces": 111,
-      "Available": 111,
-      "Address": "28.066417, -82.424167",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "38G",
-      "PermitTypes": "E",
-      "Location": "Near College Of Behavioral & Community Sciences Building (MHC), USF Family Center (MHF)",
-      "TotalSpaces": 107,
-      "Available": 107,
-      "Address": "28.067889, -82.422083",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "38H",
-      "PermitTypes": "E",
-      "Location": "Near Lawton & Rhea Chiles Center (LRC), Near College Of Behavioral & Community Sciences Building (MHC)",
-      "TotalSpaces": 20,
-      "Available": 20,
-      "Address": "28.068611, -82.423722",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "38T",
-      "PermitTypes": "D,E,HE,S",
-      "Location": "Near College Of Behavioral & Community Sciences Building (MHC), USF Family Center (MHF)",
-      "TotalSpaces": 115,
-      "Available": 115,
-      "Address": "28.068611, -82.422611",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "38U",
-      "PermitTypes": "E,HE,S",
-      "Location": "Near College Of Behavioral & Community Sciences Building (MHC), USF Family Center (MHF)",
-      "TotalSpaces": 143,
-      "Available": 143,
-      "Address": "28.067083, -82.420861",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "39A",
-      "PermitTypes": "D, E, S",
-      "Location": "Near Health Partnership Complex (HPC)",
-      "TotalSpaces": 100,
-      "Available": 100,
-      "Address": "28.062222, -82.422222",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "39B",
-      "PermitTypes": "D, E, S",
-      "Location": "Near Health Partnership Complex (HPC)",
-      "TotalSpaces": 100,
-      "Available": 100,
-      "Address": "28.061083, -82.422167",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "40",
-      "PermitTypes": "D, E, S",
-      "Location": "Near Educational Research Center (Preschool) (ERC)",
-      "TotalSpaces": 20,
-      "Available": 20,
-      "Address": "28.057333, -82.405167",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "41",
-      "PermitTypes": "E",
-      "Location": "Near University Lecture Hall (ULH), Food Services Building - Pollo Tropical (FSB), Human Services Architecture Building (HMS)",
-      "TotalSpaces": 61,
-      "Available": 61,
-      "Address": "28.060444, -82.409194",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "42",
-      "PermitTypes": "D, E",
-      "Location": "Near Morsani Center For Advanced Health Care (MDH), USF Health-Faculty Office Building (MDF)",
-      "TotalSpaces": 116,
-      "Available": 116,
-      "Address": "28.066222, -82.418167",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "43",
-      "PermitTypes": "D,E,GZ,R,S,Y",
-      "Location": "Near Johnnie B. Byrd, Sr. Alzheimers Center (ALZ), Testbed Assistive Rehab Robotics Building (RRT)",
-      "TotalSpaces": 691,
-      "Available": 691,
-      "Address": "28.068361, -82.415917",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "44",
-      "PermitTypes": "E",
-      "Location": "Near Testbed Assistive Rehab Robotics Building (RRT), Transportation Inspection & Storage (PPB)",
-      "TotalSpaces": 76,
-      "Available": 76,
-      "Address": "28.067306, -82.415083",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "45",
-      "PermitTypes": "E, S",
-      "Location": "Near USF/Patel Partnership School (CSC), Anthony J. Pizzo Elementary School (PIZ)",
-      "TotalSpaces": 69,
-      "Available": 69,
-      "Address": "28.056472, -82.404306",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "46",
-      "PermitTypes": "E,HE",
-      "Location": "NearPsychology/Communication Science & Disorders Building (PCD), Hope Lodge - American Cancer Society (ACS)",
-      "TotalSpaces": 182,
-      "Available": 182,
-      "Address": "28.063333, -82.419528",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "47",
-      "PermitTypes": "D,E,R,S",
-      "Location": "Near Magnolia Field Complex",
-      "TotalSpaces": 109,
-      "Available": 109,
-      "Address": "28.059528, -82.420583",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "47A",
-      "PermitTypes": "R",
-      "Location": "Near Magnolia Apartments Buildings",
-      "TotalSpaces": 88,
-      "Available": 88,
-      "Address": "28.058833, -82.419528",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "50",
-      "PermitTypes": "R",
-      "Location": "Near Greek Villa, Greek Housing Villa",
-      "TotalSpaces": 30,
-      "Available": 30,
-      "Address": "28.068417, -82.407444",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "51",
-      "PermitTypes": "R",
-      "Location": "Near Greek Housing Villa",
-      "TotalSpaces": 21,
-      "Available": 21,
-      "Address": "28.068528, -82.406639",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "52",
-      "PermitTypes": "R",
-      "Location": "Near Greek Housing Villa",
-      "TotalSpaces": 200,
-      "Available": 200,
-      "Address": "28.068250, -82.405583",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "52T",
-      "PermitTypes": "D,S",
-      "Location": "Near Greek Housing Villa",
-      "TotalSpaces": 40,
-      "Available": 40,
-      "Address": "28.068500, -82.405556",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "53",
-      "PermitTypes": "R",
-      "Location": "Near Greek Villa",
-      "TotalSpaces": 43,
-      "Available": 43,
-      "Address": "28.066833, -82.407472",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "56",
-      "PermitTypes": "R",
-      "Location": "Near Summit Hall (RSU), Tennis Courts, The FIT",
-      "TotalSpaces": 303,
-      "Available": 303,
-      "Address": "28.067056, -82.410139",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "CBG",
-      "PermitTypes": "GZ1,S",
-      "Location": "Near John & Grace Allen Building (ALN), Student Services Building (SVC)",
-      "TotalSpaces": 1552,
-      "Available": 1552,
-      "Address": "28.061583, -82.411972",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "CHG",
-      "PermitTypes": "D,E,R,S",
-      "Location": "Near Marshall Student Center (MSC)",
-      "TotalSpaces": 816,
-      "Available": 816,
-      "Address": "28.065125, -82.412078",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "LDG",
-      "PermitTypes": "AG42,D,E,GZ42,HE,S",
-      "Location": "Near Morsani Center For Advanced Health Care (MDH), USF Health-Faculty Office Building (MDF)",
-      "TotalSpaces": 1513,
-      "Available": 1513,
-      "Address": "28.066833, -82.418250",
-      "ZipCode": "33620"
-    },
-    {
-      "ParkingID": "MGS",
-      "PermitTypes": "HE",
-      "Location": "Near Moffitt",
-      "TotalSpaces": 300,
-      "Available": 300,
-      "Address": "28.063167, -82.421250",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "CCG",
-      "PermitTypes": "HE",
-      "Location": "Near Moffitt",
-      "TotalSpaces": 300,
-      "Available": 300,
-      "Address": "28.065472, -82.422111",
-      "ZipCode": "33612"
-    },
-    {
-      "ParkingID": "BDG",
-      "PermitTypes": "D,GZ8,R,S",
-      "Location": "Near ENB, Juniper Poplar Hall (JPH)",
-      "TotalSpaces": 2010,
-      "Available": 2010,
-      "Address": "28.058694, -82.417111",
-      "ZipCode": "33620"
-    }
-  ]
-  
+  {
+    "ParkingID": "1",
+    "PermitTypes": "E",
+    "Location": "Near Education EDU, Center For Econ. Education CEE, David C.Anchin Center, Library LIB, Cooper Hall (Arts & Science CPR), John & Grace Allen Building ALN",
+    "TotalSpaces": 326,
+    "Available": 326,
+    "Address": "28.060694, -82.412000",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "2A",
+    "PermitTypes": "GZ",
+    "Location": "Near Bioscience BSF, Interdisciplinary Sciences ISA, John & Grace Allen Building ALN, Library LIB, CAS Multidisciplinary Complex CMC",
+    "TotalSpaces": 210,
+    "Available": 210,
+    "Address": "28.060361, -82.414250",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "2C",
+    "PermitTypes": "GZ",
+    "Location": "Near CAS Multidisciplinary Complex CMC, Engineering (Edgar W Kopp) ENG, Engineering III ENC, Engineering II ENB",
+    "TotalSpaces": 210,
+    "Available": 210,
+    "Address": "28.059500, -82.414722",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "3A",
+    "PermitTypes": "E",
+    "Location": "Near Theatre Center TAR, Theatre 1 TAT, Dance FAD, Theatre 2 THR, Marshall Student Center MSC",
+    "TotalSpaces": 105,
+    "Available": 105,
+    "Address": "28.064444, -82.414583",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "3B",
+    "PermitTypes": "D,E,S",
+    "Location": "Near Dance FAD, Theatre 2 THR, Theatre Centre TAR, Theatre 1 TAT, Contemporary Art Museum CAM",
+    "TotalSpaces": 115,
+    "Available": 115,
+    "Address": "28.064333, -82.415194",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "3C",
+    "PermitTypes": "E,S",
+    "Location": "Near Contemporary Art Museum CAM, Dance FAD, Theatre 2 THR, Fine Arts Studio FAS, Fine Arts Building FAH",
+    "TotalSpaces": 198,
+    "Available": 198,
+    "Address": "28.064250, -82.415806",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "3D",
+    "PermitTypes": "E,S",
+    "Location": "Near Fine Arts Studio FAS, Contemporary Art Museum CAM, Fine Arts Building FAH",
+    "TotalSpaces": 107,
+    "Available": 107,
+    "Address": "28.064528, -82.416583",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "3E",
+    "PermitTypes": "E",
+    "Location": "Near School of Music MUS, Fine Arts Studio FAS",
+    "TotalSpaces": 18,
+    "Available": 18,
+    "Address": "28.064444, -82.417250",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "4",
+    "PermitTypes": "E",
+    "Location": "Near PPA-USF Post Office, PPC, FPC, Facilities Management OPM",
+    "TotalSpaces": 40,
+    "Available": 40,
+    "Address": "28.065194, -82.414528",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "5A",
+    "PermitTypes": "R",
+    "Location": "Near Student Healh Services",
+    "TotalSpaces": 121,
+    "Available": 121,
+    "Address": "28.064083, -82.412111",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "5B",
+    "PermitTypes": "R",
+    "Location": "Near Argos Center (RAR), Kosove Hall (RKO), Holly Drive Apartments-Building D, E, F",
+    "TotalSpaces": 21,
+    "Available": 21,
+    "Address": "28.064889, -82.410889",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "5D",
+    "PermitTypes": "E",
+    "Location": "Near Maple Suites B (MPB), Holly Drive Apartments-Building G (HAG), Maple Multi-Purpose Building (MPC), Maple Life/Learning Center (MPD)",
+    "TotalSpaces": 50,
+    "Available": 50,
+    "Address": "28.065444, -82.409222",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "5E",
+    "PermitTypes": "R",
+    "Location": "Near Beta Hall (RBE)",
+    "TotalSpaces": 168,
+    "Available": 168,
+    "Address": "28.064417, -82.408500",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "6",
+    "PermitTypes": "D, E, S",
+    "Location": "Near the REC, Lee Roy Selmon Athletic Center (ATH), Physical Education Building (PED)",
+    "TotalSpaces": 533,
+    "Available": 533,
+    "Address": "28.060722, -82.406278",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "7A",
+    "PermitTypes": "E",
+    "Location": "Near Behavioral Sciences Building (BEH), WUSF Radio Building (WRB)",
+    "TotalSpaces": 178,
+    "Available": 178,
+    "Address": "28.062250, -82.411056",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "7B",
+    "PermitTypes": "D, E",
+    "Location": "Near Faculty Office Building (FAO), Stavros Center For Economic Education (CEE)",
+    "TotalSpaces": 118,
+    "Available": 118,
+    "Address": "28.061556, -82.410833",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "7C",
+    "PermitTypes": "E",
+    "Location": "Near Student Services Building (SVC), WUSF Radio Building (WRB), WUSF Television Building (TVB)",
+    "TotalSpaces": 30,
+    "Available": 30,
+    "Address": "28.061972, -82.411944",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "8A",
+    "PermitTypes": "E",
+    "Location": "Near Science Center (SCA), Juniper Poplar Hall (JPH)",
+    "TotalSpaces": 92,
+    "Available": 92,
+    "Address": "28.060361, -82.417083",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "8B",
+    "PermitTypes": "D, E",
+    "Location": "Near Edgar W Kopp Building (Engineering I) (ENG), Glenn Burdick Building (Engineering II) (ENB)",
+    "TotalSpaces": 276,
+    "Available": 276,
+    "Address": "28.059667, -82.417028",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "8C",
+    "PermitTypes": "E, S",
+    "Location": "Near Edgar W Kopp Building (Engineering I) (ENG), Glenn Burdick Building (Engineering II) (ENB), Engineering Building III (ENC)",
+    "TotalSpaces": 249,
+    "Available": 249,
+    "Address": "28.058000, -82.414694",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "9A",
+    "PermitTypes": "E, S",
+    "Location": "Near Psychology/Communication Science & Disorders Building (PCD), Fine Arts Building (FAH)",
+    "TotalSpaces": 416,
+    "Available": 416,
+    "Address": "28.063056, -82.418111",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "9C",
+    "PermitTypes": "D, E",
+    "Location": "Near School Of Music Building (MUS), Moffitt Research Center (MRC), Central Receiving And Storage Building (CRS)",
+    "TotalSpaces": 99,
+    "Available": 99,
+    "Address": "28.065389, -82.418611",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "11",
+    "PermitTypes": "E",
+    "Location": "Near USF Health-Therapy Building (MDT)",
+    "TotalSpaces": 81,
+    "Available": 81,
+    "Address": "28.068083, -82.418556",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "12",
+    "PermitTypes": "D, E",
+    "Location": "Near USF Health-Therapy Building (MDT)",
+    "TotalSpaces": 220,
+    "Available": 220,
+    "Address": "28.068194, -82.419889",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "14",
+    "PermitTypes": "E",
+    "Location": "Near Central Receiving And Storage Building (CRS), arking & Transportation Building A (PTA), Engineering Research Building (ENR)",
+    "TotalSpaces": 0,
+    "Available": 0,
+    "Address": "28.066056, -82.417278",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "15",
+    "PermitTypes": "E",
+    "Location": "Near C. W. Bill Young Hall (CWY), The REC",
+    "TotalSpaces": 15,
+    "Available": 15,
+    "Address": "28.061028, -82.408278",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "16",
+    "PermitTypes": "R",
+    "Location": "Near Publix Supermarket (PBX)",
+    "TotalSpaces": 283,
+    "Available": 283,
+    "Address": "28.068639, -82.410611",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "17A",
+    "PermitTypes": "R",
+    "Location": "Near Castor Beach, Argos Center (RAR)",
+    "TotalSpaces": 117,
+    "Available": 117,
+    "Address": "28.063528, -82.410028",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "17B",
+    "PermitTypes": "R, S",
+    "Location": "Near Castor Beach, Argos Center (RAR)",
+    "TotalSpaces": 451,
+    "Available": 451,
+    "Address": "28.063417, -82.409083",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "18",
+    "PermitTypes": "D,E,GZ,HE,R,S,Y",
+    "Location": "Porter Family Indoor Performance Facility (IPF), Crosswinds Wesley Fndtn (WFC), Baptist Student Center (BPT), Chapel Center (CHA), Hillel Jewish Student Center (HIL)",
+    "TotalSpaces": 652,
+    "Available": 652,
+    "Address": "28.062889, -82.402778",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "19",
+    "PermitTypes": "D,E,HE,S",
+    "Location": "Near Hope Lodge - American Cancer Society (ACS), Health Partnership Complex (HPC)",
+    "TotalSpaces": 477,
+    "Available": 477,
+    "Address": "28.061917, -82.420250",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "20",
+    "PermitTypes": "E,R,S",
+    "Location": "Near USF Credit Union (CRU)",
+    "TotalSpaces": 229,
+    "Available": 229,
+    "Address": "28.066778, -82.413889",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "21",
+    "PermitTypes": "E,S",
+    "Location": "Near PE Tennis Court, C. W. Bill Young Hall (CWY)",
+    "TotalSpaces": 112,
+    "Available": 112,
+    "Address": "28.062083, -82.408194",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "22A",
+    "PermitTypes": "D,E,S",
+    "Location": "Near Student Health and Wellness Center (SWC), Southeast Chiller Plant (SEC)",
+    "TotalSpaces": 50,
+    "Available": 50,
+    "Address": "28.059111, -82.407889",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "22D",
+    "PermitTypes": "D,E,S",
+    "Location": "Near Pam & Les Muma Basketball Center (BBP)",
+    "TotalSpaces": 553,
+    "Available": 553,
+    "Address": "28.057917, -82.407917",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "22E",
+    "PermitTypes": "D, E, S",
+    "Location": "Near Pam & Les Muma Basketball Center (BBP)",
+    "TotalSpaces": 364,
+    "Available": 364,
+    "Address": "28.057694, -82.406861",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "22F",
+    "PermitTypes": "D, E, S",
+    "Location": "Near Pam & Les Muma Basketball Center (BBP)",
+    "TotalSpaces": 196,
+    "Available": 196,
+    "Address": "28.057833, -82.405889",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "23A",
+    "PermitTypes": "E",
+    "Location": "Near Sam & Martha Gibbons Alumni Center (ALC), Patel Center For Global Solutions (CGS)",
+    "TotalSpaces": 134,
+    "Available": 134,
+    "Address": "28.056139, -82.409333",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "23B",
+    "PermitTypes": "D, E",
+    "Location": "Near Sam & Martha Gibbons Alumni Center (ALC), Patel Center For Global Solutions (CGS)",
+    "TotalSpaces": 134,
+    "Available": 134,
+    "Address": "28.056167, -82.408306",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "23T",
+    "PermitTypes": "D, E, S",
+    "Location": "Near Sam & Martha Gibbons Alumni Center (ALC), Patel Center For Global Solutions (CGS)",
+    "TotalSpaces": 131,
+    "Available": 131,
+    "Address": "28.056806, -82.409444",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "24",
+    "PermitTypes": "R",
+    "Location": "Near Juniper-Poplar Hall (JPH)",
+    "TotalSpaces": 314,
+    "Available": 314,
+    "Address": "28.060500, -82.418722",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "25",
+    "PermitTypes": "R",
+    "Location": "Near University Police Building (UPB), Auxiliary Services Building (AUX)",
+    "TotalSpaces": 178,
+    "Available": 178,
+    "Address": "28.067833, -82.408833",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "26",
+    "PermitTypes": "E",
+    "Location": "Near University Police Building (UPB), Auxiliary Services Building (AUX)",
+    "TotalSpaces": 51,
+    "Available": 51,
+    "Address": "28.068556, -82.408222",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "28",
+    "PermitTypes": "E",
+    "Location": "Near Facilities Planning And Construction Building (FPC), Maintenance Services Shop Addition (PPC)",
+    "TotalSpaces": 34,
+    "Available": 34,
+    "Address": "28.065639, -82.415056",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "29A",
+    "PermitTypes": "S",
+    "Location": "Near The Zimmerman School of Advertising and Mass Communications",
+    "TotalSpaces": 320,
+    "Available": 320,
+    "Address": "28.057861, -82.412194",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "29B",
+    "PermitTypes": "S",
+    "Location": "Near The Zimmerman School of Advertising and Mass Communications",
+    "TotalSpaces": 365,
+    "Available": 365,
+    "Address": "28.058639, -82.412222",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "30",
+    "PermitTypes": "GZ33",
+    "Location": "Near USF Health-Morsani College of Medicine (MDC), USF Health-Student Group Learning Building (MDL)",
+    "TotalSpaces": 76,
+    "Available": 76,
+    "Address": "28.062556, -82.425417",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "31",
+    "PermitTypes": "GZ33",
+    "Location": "Near USF Health-Morsani College of Medicine (MDC), USF Health-Student Group Learning Building (MDL)",
+    "TotalSpaces": 27,
+    "Available": 27,
+    "Address": "28.063056, -82.423611",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "32",
+    "PermitTypes": "E, S",
+    "Location": "Near Moffitt Clinical Support Building (MCS), Moffitt Faculty Office Building (MFB)",
+    "TotalSpaces": 342,
+    "Available": 342,
+    "Address": "28.063222, -82.422694",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "33",
+    "PermitTypes": "GZ33,AG33",
+    "Location": "Near MDN-USF HEALTH-NURSING BLDG",
+    "TotalSpaces": 540,
+    "Available": 540,
+    "Address": "28.064750, -82.422917",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "33T",
+    "PermitTypes": "S",
+    "Location": "Near MDN-USF HEALTH-NURSING BLDG",
+    "TotalSpaces": 50,
+    "Available": 50,
+    "Address": "28.065667, -82.422889",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "34",
+    "PermitTypes": "D,E,S",
+    "Location": "USF Health-Shared Student Administation Building (MDA)",
+    "TotalSpaces": 126,
+    "Available": 126,
+    "Address": "28.065528, -82.424111",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "35",
+    "PermitTypes": "R, S",
+    "Location": "Near Varsity Tennis Court, Track And Field Stadium (STA), Maple Suites A (MPA)",
+    "TotalSpaces": 384,
+    "Available": 384,
+    "Address": "28.064917, -82.407417",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "36",
+    "PermitTypes": "GZ36",
+    "Location": "Near C. H. Ferguson Hall (Business Administration)",
+    "TotalSpaces": 247,
+    "Available": 247,
+    "Address": "28.057861, -82.410806",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "37",
+    "PermitTypes": "E",
+    "Location": "Near Social Science Building (SOC), Behavioral Sciences Building (BEH)",
+    "TotalSpaces": 117,
+    "Available": 117,
+    "Address": "28.062139, -82.409417",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "38A",
+    "PermitTypes": "E,HE,S",
+    "Location": "Near College Of Behavioral & Community Sciences Building (MHC), USF Family Center (MHF)",
+    "TotalSpaces": 110,
+    "Available": 110,
+    "Address": "28.068028, -82.421306",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "38B",
+    "PermitTypes": "E, HE",
+    "Location": "Near John S. Curran MD, Children's Health Center (CMS), Samuel P. Bell, III Building (CPH)",
+    "TotalSpaces": 251,
+    "Available": 251,
+    "Address": "28.066833, -82.425361",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "38C",
+    "PermitTypes": "D,E,S",
+    "Location": "Near Northwest Education Complex (NEC)",
+    "TotalSpaces": 296,
+    "Available": 296,
+    "Address": "28.068417, -82.425222",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "38D",
+    "PermitTypes": "E,S",
+    "Location": "Near College Of Behavioral & Community Sciences Building (MHC), USF Family Center (MHF)",
+    "TotalSpaces": 63,
+    "Available": 63,
+    "Address": "28.067222, -82.422333",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "38E",
+    "PermitTypes": "E",
+    "Location": "Near College Of Behavioral & Community Sciences Building (MHC), USF Family Center (MHF)",
+    "TotalSpaces": 25,
+    "Available": 25,
+    "Address": "28.066944, -82.422833",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "38F",
+    "PermitTypes": "E,HE,S",
+    "Location": "Near John S. Curran MD, Children's Health Center (CMS), Samuel P. Bell, III Building (CPH)",
+    "TotalSpaces": 111,
+    "Available": 111,
+    "Address": "28.066417, -82.424167",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "38G",
+    "PermitTypes": "E",
+    "Location": "Near College Of Behavioral & Community Sciences Building (MHC), USF Family Center (MHF)",
+    "TotalSpaces": 107,
+    "Available": 107,
+    "Address": "28.067889, -82.422083",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "38H",
+    "PermitTypes": "E",
+    "Location": "Near Lawton & Rhea Chiles Center (LRC), Near College Of Behavioral & Community Sciences Building (MHC)",
+    "TotalSpaces": 20,
+    "Available": 20,
+    "Address": "28.068611, -82.423722",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "38T",
+    "PermitTypes": "D,E,HE,S",
+    "Location": "Near College Of Behavioral & Community Sciences Building (MHC), USF Family Center (MHF)",
+    "TotalSpaces": 115,
+    "Available": 115,
+    "Address": "28.068611, -82.422611",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "38U",
+    "PermitTypes": "E,HE,S",
+    "Location": "Near College Of Behavioral & Community Sciences Building (MHC), USF Family Center (MHF)",
+    "TotalSpaces": 143,
+    "Available": 143,
+    "Address": "28.067083, -82.420861",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "39A",
+    "PermitTypes": "D, E, S",
+    "Location": "Near Health Partnership Complex (HPC)",
+    "TotalSpaces": 100,
+    "Available": 100,
+    "Address": "28.062222, -82.422222",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "39B",
+    "PermitTypes": "D, E, S",
+    "Location": "Near Health Partnership Complex (HPC)",
+    "TotalSpaces": 100,
+    "Available": 100,
+    "Address": "28.061083, -82.422167",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "40",
+    "PermitTypes": "D, E, S",
+    "Location": "Near Educational Research Center (Preschool) (ERC)",
+    "TotalSpaces": 20,
+    "Available": 20,
+    "Address": "28.057333, -82.405167",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "41",
+    "PermitTypes": "E",
+    "Location": "Near University Lecture Hall (ULH), Food Services Building - Pollo Tropical (FSB), Human Services Architecture Building (HMS)",
+    "TotalSpaces": 61,
+    "Available": 61,
+    "Address": "28.060444, -82.409194",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "42",
+    "PermitTypes": "D, E",
+    "Location": "Near Morsani Center For Advanced Health Care (MDH), USF Health-Faculty Office Building (MDF)",
+    "TotalSpaces": 116,
+    "Available": 116,
+    "Address": "28.066222, -82.418167",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "43",
+    "PermitTypes": "D,E,GZ,R,S,Y",
+    "Location": "Near Johnnie B. Byrd, Sr. Alzheimers Center (ALZ), Testbed Assistive Rehab Robotics Building (RRT)",
+    "TotalSpaces": 691,
+    "Available": 691,
+    "Address": "28.068361, -82.415917",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "44",
+    "PermitTypes": "E",
+    "Location": "Near Testbed Assistive Rehab Robotics Building (RRT), Transportation Inspection & Storage (PPB)",
+    "TotalSpaces": 76,
+    "Available": 76,
+    "Address": "28.067306, -82.415083",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "45",
+    "PermitTypes": "E, S",
+    "Location": "Near USF/Patel Partnership School (CSC), Anthony J. Pizzo Elementary School (PIZ)",
+    "TotalSpaces": 69,
+    "Available": 69,
+    "Address": "28.056472, -82.404306",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "46",
+    "PermitTypes": "E,HE",
+    "Location": "NearPsychology/Communication Science & Disorders Building (PCD), Hope Lodge - American Cancer Society (ACS)",
+    "TotalSpaces": 182,
+    "Available": 182,
+    "Address": "28.063333, -82.419528",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "47",
+    "PermitTypes": "D,E,R,S",
+    "Location": "Near Magnolia Field Complex",
+    "TotalSpaces": 109,
+    "Available": 109,
+    "Address": "28.059528, -82.420583",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "47A",
+    "PermitTypes": "R",
+    "Location": "Near Magnolia Apartments Buildings",
+    "TotalSpaces": 88,
+    "Available": 88,
+    "Address": "28.058833, -82.419528",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "50",
+    "PermitTypes": "R",
+    "Location": "Near Greek Villa, Greek Housing Villa",
+    "TotalSpaces": 30,
+    "Available": 30,
+    "Address": "28.068417, -82.407444",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "51",
+    "PermitTypes": "R",
+    "Location": "Near Greek Housing Villa",
+    "TotalSpaces": 21,
+    "Available": 21,
+    "Address": "28.068528, -82.406639",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "52",
+    "PermitTypes": "R",
+    "Location": "Near Greek Housing Villa",
+    "TotalSpaces": 200,
+    "Available": 200,
+    "Address": "28.068250, -82.405583",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "52T",
+    "PermitTypes": "D,S",
+    "Location": "Near Greek Housing Villa",
+    "TotalSpaces": 40,
+    "Available": 40,
+    "Address": "28.068500, -82.405556",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "53",
+    "PermitTypes": "R",
+    "Location": "Near Greek Villa",
+    "TotalSpaces": 43,
+    "Available": 43,
+    "Address": "28.066833, -82.407472",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "56",
+    "PermitTypes": "R",
+    "Location": "Near Summit Hall (RSU), Tennis Courts, The FIT",
+    "TotalSpaces": 303,
+    "Available": 303,
+    "Address": "28.067056, -82.410139",
+    "ZipCode": "33620",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "CBG",
+    "PermitTypes": "GZ1,S",
+    "Location": "Near John & Grace Allen Building (ALN), Student Services Building (SVC)",
+    "TotalSpaces": 1552,
+    "Available": 1552,
+    "Address": "28.061583, -82.411972",
+    "ZipCode": "33620",
+    "Floors": 5
+  },
+  {
+    "ParkingID": "CHG",
+    "PermitTypes": "D,E,R,S",
+    "Location": "Near Marshall Student Center (MSC)",
+    "TotalSpaces": 816,
+    "Available": 816,
+    "Address": "28.065125, -82.412078",
+    "ZipCode": "33620",
+    "Floors": 6
+  },
+  {
+    "ParkingID": "LDG",
+    "PermitTypes": "AG42,D,E,GZ42,HE,S",
+    "Location": "Near Morsani Center For Advanced Health Care (MDH), USF Health-Faculty Office Building (MDF)",
+    "TotalSpaces": 1513,
+    "Available": 1513,
+    "Address": "28.066833, -82.418250",
+    "ZipCode": "33620",
+    "Floors": 6
+  },
+  {
+    "ParkingID": "MGS",
+    "PermitTypes": "HE",
+    "Location": "Near Mofitt",
+    "TotalSpaces": 300,
+    "Available": 300,
+    "Address": "28.063167, -82.421250",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "CCG",
+    "PermitTypes": "HE",
+    "Location": "Near Mofitt",
+    "TotalSpaces": 300,
+    "Available": 300,
+    "Address": "28.065472, -82.422111",
+    "ZipCode": "33612",
+    "Floors": 0
+  },
+  {
+    "ParkingID": "BDG",
+    "PermitTypes": "D,GZ8,R,S",
+    "Location": "Near ENB, Juniper Poplar Hall (JPH)",
+    "TotalSpaces": 2010,
+    "Available": 2010,
+    "Address": "28.058694, -82.417111",
+    "ZipCode": "33620",
+    "Floors": 8
+  }
+]

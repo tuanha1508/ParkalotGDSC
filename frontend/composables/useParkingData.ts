@@ -27,6 +27,7 @@ export interface ParkingLot {
   routeDistance?: string | null;  // Distance via route (text format like "0.5 mi")
   routeDuration?: string | null;  // Time to walk/drive (text format like "8 mins")
   travelMode?: 'walking' | 'driving';
+  floors: number;  // Number of floors in the parking structure
 }
 
 // Raw parking data from JSON structure
@@ -34,9 +35,11 @@ interface RawParkingData {
   ParkingID: string;
   PermitTypes: string;
   Location: string;
-  TotalSpaces: string;
+  TotalSpaces: number;
+  Available: number;
   Address: string;
   ZipCode: string;
+  Floors: number;
 }
 
 // User coordinates interface
@@ -109,8 +112,8 @@ export function useParkingData() {
       const lat = coordParts[0] || 0;
       const lng = coordParts[1] || 0;
       
-      // Generate random available spots (in a real app, this would come from live data)
-      const totalSpaces = parseInt(item.TotalSpaces) || 0;
+      // Get the total spaces (already a number in the updated interface)
+      const totalSpaces = item.TotalSpaces;
       const availableSpots = Math.floor(Math.random() * (totalSpaces + 1));
       
       // Calculate straight-line distance if user coordinates are available (in KILOMETERS)
@@ -154,7 +157,8 @@ export function useParkingData() {
         imageUrl: randomImageUrl,
         distanceInKm,
         distanceInMiles,
-        travelMode: selectedTravelMode.value
+        travelMode: selectedTravelMode.value,
+        floors: item.Floors || 0
       };
       
       return lot;
