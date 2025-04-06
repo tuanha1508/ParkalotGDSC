@@ -206,6 +206,8 @@ export function useBackendApi() {
       try {
         const response = await fetch(url, { 
           signal: controller.signal,
+          method: 'GET',
+          mode: 'cors',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
