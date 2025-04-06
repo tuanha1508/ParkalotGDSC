@@ -191,6 +191,19 @@ onActivated(() => {
   }
 }
 
+/* iOS-specific adjustments */
+@supports (-webkit-touch-callout: none) {
+  .responsive-text {
+    font-size: clamp(20px, 8vw, 120px);
+    stroke-width: 0.5px;
+  }
+  
+  .video-mask-container {
+    min-height: 100px;
+    height: 20vh;
+  }
+}
+
 /* Remove old styles that are no longer needed */
 /* .video-background {
   position: absolute;
