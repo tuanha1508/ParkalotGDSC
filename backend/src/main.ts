@@ -6,7 +6,12 @@ async function bootstrap() {
   
   // Enable CORS for the frontend
   app.enableCors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:3001',
+    origin: [
+      process.env.FRONTEND_URL || 'http://localhost:3001',
+      'https://parkalot.vercel.app', // Add your production Vercel domain here
+      'https://parkalot-gdsc-client.vercel.app', // Add the GDSC client domain
+      /\.vercel\.app$/ // Allow all subdomains of vercel.app
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true,
   });
