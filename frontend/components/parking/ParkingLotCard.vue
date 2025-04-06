@@ -11,7 +11,18 @@
     </div>
     
     <div class="p-5">
-      <h3 class="text-xl font-semibold text-white">{{ lot.name }}</h3>
+      <div class="flex justify-between items-center">
+        <h3 class="text-xl font-semibold text-white">{{ lot.name }}</h3>
+        <button 
+          @click.prevent.stop="openGoogleMapsDirections($event)" 
+          class="text-white hover:text-blue-300 p-1 transition-colors"
+          title="Get directions to this parking lot"
+        >
+          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+        </button>
+      </div>
       
       <div class="mt-2 text-white opacity-70 text-sm line-clamp-2">
         {{ lot.location }}
@@ -82,19 +93,82 @@
 <script setup lang="ts">
 import type { ParkingLot } from '../../composables/useParkingData'
 
-defineProps<{
+const props = defineProps<{
   lot: ParkingLot
 }>()
 
 defineEmits<{
   select: []
 }>()
+
+// Function to open Google Maps with directions from current location to parking lot
+function openGoogleMapsDirections(event: Event) {
+  event.preventDefault();
+  event.stopPropagation(); // Prevent triggering the card selection
+  
+  console.log('Opening Google Maps directions for:', props.lot.name);
+  console.log('Parking coordinates:', props.lot.coordinates);
+
+  try {
+    const { lat, lng } = props.lot.coordinates;
+    
+    // Check if coordinates are valid
+    if (!lat || !lng || isNaN(lat) || isNaN(lng)) {
+      throw new Error('Invalid parking lot coordinates');
+    }
+
+    // Get the user's current position
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          console.log('User coordinates:', latitude, longitude);
+          
+          // Create Google Maps URL with directions and driving mode
+          const url = `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${lat},${lng}&travelmode=driving`;
+          
+          console.log('Maps URL:', url);
+          
+          // Force navigation to the URL
+          window.location.href = url;
+        },
+        (error) => {
+          console.error('Error getting current position:', error);
+          // If can't get current location, use just the destination
+          const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`;
+          console.log('Fallback Maps URL (no origin):', url);
+          window.location.href = url;
+        },
+        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+      );
+    } else {
+      // Fallback if geolocation is not supported
+      const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`;
+      console.log('Fallback Maps URL (geo not supported):', url);
+      window.location.href = url;
+    }
+  } catch (error) {
+    console.error('Error in maps redirect:', error);
+    
+    // Last resort fallback
+    try {
+      const address = encodeURIComponent(props.lot.address || props.lot.location || props.lot.name);
+      const url = `https://www.google.com/maps/dir/?api=1&destination=${address}&travelmode=driving`;
+      console.log('Last resort fallback URL:', url);
+      window.location.href = url;
+    } catch (e) {
+      console.error('Could not redirect to maps at all:', e);
+      alert('Could not open directions. Please try again.');
+    }
+  }
+}
 </script>
 
 <style scoped>
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
