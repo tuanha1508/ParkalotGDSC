@@ -212,4 +212,17 @@ html, body {
 .u-button[variant="outline"]:hover {
   background-color: #FFFFFF !important;
   color: #000000 !important;
+}
+
+/* Ensure white background is applied correctly for "Get Started" button */
+.u-button.bg-white,
+[class*="u-button"].bg-white {
+  background-color: #FFFFFF !important;
+  color: #000000 !important;
+  border: none !important;
+}
+
+.u-button.bg-white:hover,
+[class*="u-button"].bg-white:hover {
+  background-color: #F3F4F6 !important;
 } 
