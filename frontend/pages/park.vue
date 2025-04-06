@@ -1,6 +1,6 @@
 <template>
   <div class="bg-black min-h-screen">
-    <div class="container mx-auto px-6 py-8">
+    <div class="container mx-auto px-6 py-8 pt-20">
       <!-- Page Header -->
       <div class="mb-10">
         <h1 class="text-4xl font-bold text-white flex items-center">

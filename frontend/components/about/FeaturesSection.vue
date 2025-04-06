@@ -40,8 +40,8 @@
         <div class="max-w-xl mx-auto">
           <h3 class="text-xl font-medium mb-4 text-center">Parking Management Dashboard</h3>
           <p class="text-white/60 mb-8 text-center">For parking administrators: Track vehicles in your facility, verify permits, and monitor license plates in real-time as cars enter and exit.</p>
-          <div class="rounded-lg border border-white/20 h-64 bg-black flex items-center justify-center">
-            <p class="text-white/60">Admin Console</p>
+          <div class="rounded-lg border border-white/20 overflow-hidden bg-black">
+            <img src="/admin_dashboard.png" alt="Parking Management Dashboard" class="w-full h-auto" />
           </div>
         </div>
       </div>

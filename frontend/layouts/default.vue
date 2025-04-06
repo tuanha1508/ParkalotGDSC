@@ -1,8 +1,11 @@
 <template>
-  <div class="min-h-screen bg-background text-white">
+  <div class="h-screen flex flex-col bg-background text-white">
     <Navbar />
     
-    <main class="container mx-auto px-6 sm:px-10 md:px-16 lg:px-24 pt-16 pb-10">
+    <main :class="[
+      'container mx-auto px-6 sm:px-10 md:px-16 lg:px-24 flex-grow flex flex-col',
+      { 'overflow-y-auto': true }
+    ]">
       <PageTransition>
         <slot />
       </PageTransition>
@@ -93,5 +96,18 @@
 </template>
 
 <script setup lang="ts">
+const route = useRoute();
 // Auth functionality has been removed
-</script> 
+</script>
+
+<style scoped>
+/* Ensure contents don't overflow and cause scrolling */
+main, footer {
+  flex-shrink: 0;
+}
+
+/* Adjust footer to be compact on home page */
+:deep(.router-link-exact-active[href="/"]) ~ footer {
+  font-size: 0.9em;
+}
+</style> 

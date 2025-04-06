@@ -14,9 +14,14 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Varela Round', 'sans-serif'],
+        gugi: ['Gugi', 'cursive'],
       },
       fontSize: {
         'xxs': '0.625rem', // 10px
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(var(--tw-gradient-stops))',
       },
       colors: {
         // Core colors used across pages

@@ -11,11 +11,39 @@
   --text-secondary: #9ca3af;
 }
 
+/* Hide scrollbar for all browsers while maintaining functionality */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  
+  /* For webkit browsers */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 body {
   background-color: var(--background-color);
   color: var(--text-primary);
   font-family: 'Varela Round', sans-serif;
   overflow-x: hidden; /* Prevent horizontal scrolling */
+  
+  /* Also hide scrollbar on body */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Hide scrollbars on all elements with overflow */
+div, section, main, aside, article, nav, header, footer {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 /* Set lighter font weight for all elements except nav */

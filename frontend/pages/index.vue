@@ -1,7 +1,9 @@
 <template>
-  <div class="bg-black text-white min-h-screen overflow-hidden">
-    <!-- Hero Section -->
-    <HeroSection />
+  <div class="bg-black text-white h-screen flex flex-col overflow-hidden">
+    <!-- Hero Section with flex-grow to take available space -->
+    <div class="flex-grow overflow-hidden">
+      <HeroSection />
+    </div>
   </div>
 </template>
 
@@ -12,4 +14,19 @@ import HeroSection from '@/components/home/HeroSection.vue'
 definePageMeta({
   layout: 'default',
 })
-</script> 
+</script>
+
+<style scoped>
+/* Ensure the page takes exactly the viewport height */
+:deep(.min-h-screen) {
+  min-height: 100vh;
+  height: 100vh;
+}
+
+/* Remove any padding that might cause overflow */
+:deep(main) {
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+</style> 
