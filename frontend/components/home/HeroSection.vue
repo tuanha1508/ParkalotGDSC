@@ -87,22 +87,21 @@
                 <NuxtLink to="/park" class="no-underline">
                   <UButton 
                     size="sm" 
-                    class="text-xs font-medium bg-white !text-black rounded-full hover:bg-gray-100 transition-all duration-300 w-full sm:w-auto px-6 py-2 group-hover:scale-105 transform"
+                    class="text-xs font-medium bg-white !text-black rounded-full hover:bg-gray-100 transition-all duration-300 w-full sm:w-auto px-6 py-2"
                     style="background-color: #FFFFFF !important; color: #000000 !important; border: none !important;"
                   >
                     Get Started
                   </UButton>
                 </NuxtLink>
-                <div class="absolute inset-0 bg-gradient-to-r from-primary-500/60 to-accent/60 rounded-full opacity-0 group-hover:opacity-30 -z-10 group-hover:scale-110 transition-all duration-300"></div>
               </div>
               
               <div class="relative group inline-block">
                 <NuxtLink to="/about" class="no-underline">
-                  <button class="custom-button explore-btn relative overflow-hidden group-hover:tracking-wider transition-all duration-300">
+                  <button class="custom-button explore-btn relative overflow-hidden transition-all duration-300">
                     <span class="relative z-10">Explore Features →</span>
-                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300 rounded-full"></span>
                   </button>
                 </NuxtLink>
+                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-[1px] bg-white rounded-full transition-all duration-300 w-0 group-hover:w-4/5"></span>
               </div>
             </div>
           </client-only>
@@ -224,7 +223,7 @@ onActivated(() => {
 
 .parkalot-title {
   font-family: 'Gugi', sans-serif;
-  font-size: clamp(80px, 20vw, 400px);
+  font-size: clamp(60px, 15vw, 300px);
   font-weight: bold;
   color: transparent;
   -webkit-text-stroke: 2px rgba(255,255,255,0.8);
