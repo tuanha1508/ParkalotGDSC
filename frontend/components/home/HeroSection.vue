@@ -37,12 +37,12 @@
                 <NuxtLink to="/park" class="no-underline">
                   <UButton 
                     size="sm" 
-                    class="text-xs font-medium bg-white text-black rounded-full hover:bg-gray-100 transition-all duration-300 w-full sm:w-auto px-6 py-2"
+                    class="text-xs font-medium bg-white !text-black rounded-full hover:bg-gray-100 w-full sm:w-auto px-6 py-2 border-0 shadow-none"
+                    color="white"
                   >
                     Get Started
                   </UButton>
                 </NuxtLink>
-                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-[1px] bg-black rounded-full transition-all duration-300 w-0 group-hover:w-4/5"></span>
               </div>
               
               <div class="relative group inline-block">
@@ -50,12 +50,11 @@
                   <UButton 
                     size="sm"
                     variant="ghost" 
-                    class="text-xs font-medium text-white hover:text-gray-300 transition-all duration-300 w-full sm:w-auto px-3 py-1 no-underline border-none outline-none focus:outline-none focus:ring-0 focus:border-0 active:outline-none"
+                    class="text-xs font-medium !text-white hover:text-gray-300 w-full sm:w-auto px-3 py-1 no-underline border-0 shadow-none outline-none focus:outline-none focus:ring-0"
                   >
                     Explore Features →
                   </UButton>
                 </NuxtLink>
-                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-[1px] bg-white rounded-full transition-all duration-300 w-0 group-hover:w-4/5"></span>
               </div>
             </div>
           </client-only>
@@ -103,4 +102,28 @@
 
 <script setup lang="ts">
 // No special script logic needed for this component
-</script> 
+</script>
+
+<style scoped>
+/* Force consistent button styling */
+:deep(.u-button) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+
+:deep(.u-button--white) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+:deep(.u-button--ghost) {
+  background-color: transparent;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+</style> 
