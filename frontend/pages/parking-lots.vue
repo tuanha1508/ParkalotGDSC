@@ -2,68 +2,31 @@
   <div class="bg-black min-h-screen">
     <div class="container mx-auto px-6 py-8">
       <!-- Page Header -->
-      <div class="mb-10">
-        <h1 class="text-4xl font-bold text-white flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M9 17V7h4a3 3 0 0 1 0 6H9" />
-          </svg>
-          Available Parking
-        </h1>
-        <p class="text-white opacity-70 mt-1">
-          {{ filters.destination.value ? `Near ${filters.destination.value}` : 'Showing all parking lots' }}
-        </p>
-      </div>
+      <ParkingLotsHeader :destination="filters.destination.value" />
       
       <!-- Error Message -->
-      <div v-if="errorMessage" class="mb-6 p-3 bg-red-900/50 border border-red-700 rounded-lg text-white">
-        <div class="flex items-start">
-          <UIcon name="i-heroicons-exclamation-triangle" class="h-5 w-5 mr-2 flex-shrink-0 text-red-500" />
-          <p>{{ errorMessage }}</p>
-        </div>
-      </div>
+      <ErrorMessage :message="errorMessage" />
       
       <!-- Results Summary -->
-      <div v-if="search.parkingLots.value.length > 0" class="mb-4">
-        <h2 class="text-white text-lg font-medium">
-          Found {{ search.parkingLots.value.length }} parking lots
-          <span v-if="filters.destination.value">
-            near {{ filters.destination.value }}
-          </span>
-        </h2>
-        <p class="text-white/60 text-sm">
-          Sorted by driving distance from your destination
-        </p>
-      </div>
+      <ResultsSummary 
+        :count="search.parkingLots.value.length" 
+        :destination="filters.destination.value" 
+      />
       
       <!-- Parking Lots List -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <ParkingLotCard
-          v-for="lot in search.parkingLots.value"
-          :key="lot.id"
-          :lot="lot"
-          @select="selectParkingLot(lot)"
-        />
-      </div>
+      <ParkingLotsList 
+        :parking-lots="search.parkingLots.value" 
+        @select="selectParkingLot" 
+      />
       
       <!-- Loading State -->
-      <div v-if="search.isLoading.value" class="flex flex-col items-center justify-center py-20">
-        <UIcon name="i-heroicons-arrow-path" class="h-16 w-16 text-white mb-4 animate-spin" />
-        <h3 class="text-xl font-semibold text-white">Finding Parking Lots...</h3>
-        <p class="text-white opacity-70 mt-2 text-center">Please wait while we search for parking options.</p>
-      </div>
+      <LoadingState v-if="search.isLoading.value" />
       
       <!-- Empty State -->
-      <div v-if="!search.isLoading.value && search.parkingLots.value.length === 0" class="flex flex-col items-center justify-center py-20">
-        <UIcon name="i-heroicons-face-frown" class="h-16 w-16 text-white opacity-50 mb-4" />
-        <h3 class="text-xl font-semibold text-white">No parking lots found</h3>
-        <p class="text-white opacity-70 mt-2 text-center">Try adjusting your filters or searching for a different location.</p>
-        <div class="mt-4">
-          <UButton @click="handleClearAll" color="white" variant="outline" class="rounded-full">
-            Reset Filters
-          </UButton>
-        </div>
-      </div>
+      <EmptyState 
+        v-if="!search.isLoading.value && search.parkingLots.value.length === 0" 
+        @reset="handleClearAll" 
+      />
     </div>
   </div>
 </template>
@@ -77,7 +40,12 @@ import { useParkingSearch } from '../composables/useParkingSearch'
 import { useParkingData } from '../composables/useParkingData'
 
 // Import components
-import ParkingLotCard from '../components/parking/ParkingLotCard.vue'
+import ParkingLotsHeader from '../components/parking/ParkingLotsHeader.vue'
+import ErrorMessage from '../components/parking/ErrorMessage.vue'
+import ResultsSummary from '../components/parking/ResultsSummary.vue'
+import ParkingLotsList from '../components/parking/ParkingLotsList.vue'
+import LoadingState from '../components/parking/LoadingState.vue'
+import EmptyState from '../components/parking/EmptyState.vue'
 
 definePageMeta({
   layout: 'default',
