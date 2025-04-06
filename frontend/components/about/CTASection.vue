@@ -20,9 +20,9 @@
         v-motion
         :initial="{ opacity: 0, y: 40 }"
         :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 600 } }"
-        class="grid grid-cols-1 md:grid-cols-6 gap-8 mt-12 bg-gray-900/40 p-8 rounded-xl border border-white/10"
+        class="grid grid-cols-1 md:grid-cols-6 gap-8 mt-12 bg-black p-8 rounded-xl border border-white/10"
       >
-        <div class="md:col-span-1">
+        <div class="md:col-span-1 bg-black">
           <h3 class="text-lg font-medium mb-2">Free</h3>
           <p class="text-white/60 mb-2">For small teams</p>
           <p class="text-2xl font-bold mb-3">$0</p>
@@ -37,7 +37,7 @@
             </li>
           </ul>
         </div>
-        <div class="md:col-span-1">
+        <div class="md:col-span-1 bg-black">
           <h3 class="text-lg font-medium mb-2">Standard</h3>
           <p class="text-white/60 mb-2">For growing teams</p>
           <p class="text-2xl font-bold mb-3">$9</p>
@@ -52,7 +52,7 @@
             </li>
           </ul>
         </div>
-        <div class="md:col-span-1">
+        <div class="md:col-span-1 bg-black">
           <h3 class="text-lg font-medium mb-2">Plus</h3>
           <p class="text-white/60 mb-2">For larger teams</p>
           <p class="text-2xl font-bold mb-3">$29</p>
@@ -67,7 +67,7 @@
             </li>
           </ul>
         </div>
-        <div class="md:col-span-1">
+        <div class="md:col-span-1 bg-black">
           <h3 class="text-lg font-medium mb-2">Pro</h3>
           <p class="text-white/60 mb-2">For organizations</p>
           <p class="text-2xl font-bold mb-3">$49</p>
@@ -82,7 +82,7 @@
             </li>
           </ul>
         </div>
-        <div class="md:col-span-1">
+        <div class="md:col-span-1 bg-black">
           <h3 class="text-lg font-medium mb-2">Enterprise</h3>
           <p class="text-white/60 mb-2">For large enterprises</p>
           <p class="text-2xl font-bold mb-3">Contact</p>
@@ -97,7 +97,7 @@
             </li>
           </ul>
         </div>
-        <div class="md:col-span-1 flex items-end">
+        <div class="md:col-span-1 flex items-end bg-black">
           <UButton 
             class="bg-white !text-black border border-white hover:bg-gray-100 hover:text-black transition-all duration-300" 
             style="background-color: #FFFFFF !important; color: #000000 !important; border: none !important;"

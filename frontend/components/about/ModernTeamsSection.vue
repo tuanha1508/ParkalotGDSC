@@ -21,10 +21,12 @@
           v-motion
           :initial="{ opacity: 0, y: 30 }"
           :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 500, delay: 100 } }"
-          class="bg-gray-900/50 p-6 rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300"
+          class="p-6 rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300"
+          style="background-color: #000000;"
         >
-          <div class="w-12 h-12 bg-blue-600/20 flex items-center justify-center rounded-full mb-4">
-            <Icon name="heroicons:sparkles" class="w-6 h-6 text-blue-400" />
+          <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" 
+               style="background-color: #F67280; border-color: #F67280;">
+            <Icon name="heroicons:sparkles" class="w-6 h-6 text-white" />
           </div>
           <h3 class="text-xl font-medium mb-4">Effortless experience</h3>
           <p class="text-white/60 mb-4">Designed with care to make finding parking quick, simple, and stress-free.</p>
@@ -49,10 +51,12 @@
           v-motion
           :initial="{ opacity: 0, y: 30 }"
           :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 500, delay: 200 } }"
-          class="bg-gray-900/50 p-6 rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300"
+          class="p-6 rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300"
+          style="background-color: #000000;"
         >
-          <div class="w-12 h-12 bg-purple-600/20 flex items-center justify-center rounded-full mb-4">
-            <Icon name="heroicons:clock" class="w-6 h-6 text-purple-400" />
+          <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4"
+               style="background-color: #EF9C66; border-color: #EF9C66;">
+            <Icon name="heroicons:clock" class="w-6 h-6 text-white" />
           </div>
           <h3 class="text-xl font-medium mb-4">Real-time accuracy</h3>
           <p class="text-white/60 mb-4">Get up-to-the-minute information on parking availability and status.</p>
@@ -77,10 +81,12 @@
           v-motion
           :initial="{ opacity: 0, y: 30 }"
           :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 500, delay: 300 } }"
-          class="bg-gray-900/50 p-6 rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300"
+          class="p-6 rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300"
+          style="background-color: #000000;"
         >
-          <div class="w-12 h-12 bg-green-600/20 flex items-center justify-center rounded-full mb-4">
-            <Icon name="heroicons:cube-transparent" class="w-6 h-6 text-green-400" />
+          <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4"
+               style="background-color: #B0EBB4; border-color: #B0EBB4;">
+            <Icon name="heroicons:cube-transparent" class="w-6 h-6 text-white" />
           </div>
           <h3 class="text-xl font-medium mb-4">Complete solution</h3>
           <p class="text-white/60 mb-4">Whether you're a driver or parking administrator, Parkalot has all the tools you need.</p>

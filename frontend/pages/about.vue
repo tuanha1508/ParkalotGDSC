@@ -24,7 +24,14 @@ definePageMeta({
 
 <style scoped>
 /* Dark theme styling */
-:deep(.u-card) {
+:deep(.u-card),
+:deep(.card),
+:deep(.box),
+:deep([class*="card"]),
+:deep([class*="box"]),
+:deep(.container),
+:deep(.panel),
+:deep(.section) {
   background-color: #000000;
   border-color: rgba(255, 255, 255, 0.2);
 }

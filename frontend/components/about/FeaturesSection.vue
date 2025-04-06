@@ -61,7 +61,7 @@
           :visibleOnce="{ opacity: 1, x: 0, transition: { duration: 600 } }"
         >
           <h3 class="text-xl font-medium mb-4">Parking Space Details</h3>
-          <p class="text-white/60 mb-8">Get important information about each space including size, height restrictions, pricing, and amenities before you arrive. View photos of the parking area for easier navigation.</p>
+          <p class="text-white/60 mb-8">Get information about each space including size, height restrictions, pricing, and amenities before you arrive. View photos of the parking area for easier navigation.</p>
           <div class="rounded-lg border border-white/20 h-64 bg-black overflow-hidden">
             <SpaceDetails />
           </div>
