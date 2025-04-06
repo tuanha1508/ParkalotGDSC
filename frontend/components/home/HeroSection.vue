@@ -38,6 +38,7 @@
                   <UButton 
                     size="sm" 
                     class="text-xs font-medium bg-white !text-black rounded-full hover:bg-gray-100 transition-all duration-300 w-full sm:w-auto px-6 py-2"
+                    style="background-color: #FFFFFF !important; color: #000000 !important; border: none !important;"
                   >
                     Get Started
                   </UButton>
@@ -120,6 +121,7 @@
   background-color: #FFFFFF !important;
   color: #000000 !important;
   box-shadow: none;
+  border: none !important;
 }
 
 .get-started-btn:hover {

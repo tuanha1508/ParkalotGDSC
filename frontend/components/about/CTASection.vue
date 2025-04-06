@@ -24,7 +24,13 @@
           <p class="text-white/60">For large enterprises</p>
         </div>
         <div class="md:col-span-1">
-          <UButton class="bg-white !text-black border border-white hover:bg-gray-100 hover:text-black transition-all duration-300" block>Get Started</UButton>
+          <UButton 
+            class="bg-white !text-black border border-white hover:bg-gray-100 hover:text-black transition-all duration-300" 
+            style="background-color: #FFFFFF !important; color: #000000 !important; border: none !important;"
+            block
+          >
+            Get Started
+          </UButton>
         </div>
       </div>
     </div>
