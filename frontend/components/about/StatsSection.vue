@@ -21,7 +21,6 @@
         >
           <h3 class="text-3xl font-bold">2M+</h3>
           <p class="text-white/60">Issues created</p>
-          <p class="text-xs mt-2 text-white/80">Parking issues resolved through our smart allocation system</p>
         </div>
         <div 
           ref="statTwoRef"
@@ -32,7 +31,6 @@
         >
           <h3 class="text-3xl font-bold">300k+</h3>
           <p class="text-white/60">Active users</p>
-          <p class="text-xs mt-2 text-white/80">Drivers finding optimal parking spots daily</p>
         </div>
         <div 
           ref="statThreeRef"
@@ -43,7 +41,6 @@
         >
           <h3 class="text-3xl font-bold">16M+</h3>
           <p class="text-white/60">Updates tracked</p>
-          <p class="text-xs mt-2 text-white/80">Real-time parking availability updates processed</p>
         </div>
       </div>
     </div>

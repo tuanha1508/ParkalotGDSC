@@ -10,9 +10,10 @@
       <div class="flex flex-col items-center justify-center gap-8">
         
         <div class="w-full text-center">
-          <!-- Add a video container that will be masked by the text -->
+          <!-- Modified video mask container with additional iOS compatibility -->
           <div class="video-mask-container relative">
-            <svg class="text-mask-svg" width="100%" height="100%">
+            <!-- Standard SVG mask approach -->
+            <svg class="text-mask-svg" width="100%" height="100%" overflow="visible">
               <!-- Define the mask using the text -->
               <defs>
                 <mask id="text-mask">
@@ -33,20 +34,21 @@
                 </mask>
               </defs>
               
-              <!-- Apply the mask to a rectangle with the video as background -->
+              <!-- Apply the mask to a rectangle that contains the video, not directly to the video -->
               <foreignObject width="100%" height="100%" mask="url(#text-mask)" style="overflow: hidden;">
-                <video 
-                  ref="videoElement"
-                  xmlns="http://www.w3.org/1999/xhtml"
-                  class="w-full h-full object-cover"
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  style="pointer-events: none;"
-                >
-                  <source src="/video-background.mp4" type="video/mp4" />
-                </video>
+                <div xmlns="http://www.w3.org/1999/xhtml" class="w-full h-full">
+                  <video 
+                    ref="videoElement"
+                    class="w-full h-full object-cover"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    style="pointer-events: none;"
+                  >
+                    <source src="/video-background.mp4" type="video/mp4" />
+                  </video>
+                </div>
               </foreignObject>
               
               <!-- Add a thin outline around the text for better visibility -->
@@ -65,6 +67,20 @@
                 Parkalot
               </text>
             </svg>
+            
+            <!-- iOS Fallback: Hidden on non-iOS devices, visible only on iOS -->
+            <div class="ios-fallback">
+              <div class="ios-text">Parkalot</div>
+              <video 
+                class="ios-video"
+                autoplay
+                muted
+                loop
+                playsinline
+              >
+                <source src="/video-background.mp4" type="video/mp4" />
+              </video>
+            </div>
           </div>
           
           <client-only>
@@ -167,6 +183,7 @@ onActivated(() => {
   overflow: visible;
   display: block; /* Prevent extra space below the SVG */
   height: 100%;
+  z-index: 1;
 }
 
 .text-outline {
@@ -176,6 +193,43 @@ onActivated(() => {
 .responsive-text {
   font-size: clamp(100px, 20vw, 400px);
   stroke-width: clamp(1px, 0.25vw, 3px);
+}
+
+/* iOS Fallback Styles */
+.ios-fallback {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; /* Hidden by default */
+  overflow: hidden;
+}
+
+.ios-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0.5; /* Semi-transparent */
+}
+
+.ios-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Gugi', sans-serif;
+  font-weight: bold;
+  font-size: clamp(80px, 15vw, 300px);
+  color: white;
+  z-index: 2;
+  text-align: center;
+  mix-blend-mode: overlay;
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
 
 /* Mobile-specific adjustments */
@@ -189,10 +243,22 @@ onActivated(() => {
     min-height: 120px;
     height: 25vh;
   }
+  
+  .ios-text {
+    font-size: clamp(30px, 10vw, 120px);
+  }
 }
 
-/* iOS-specific adjustments */
+/* iOS-specific adjustments - Apply the iOS fallback solution only on iOS devices */
 @supports (-webkit-touch-callout: none) {
+  .text-mask-svg {
+    display: none; /* Hide the standard SVG on iOS */
+  }
+  
+  .ios-fallback {
+    display: block; /* Show the iOS fallback on iOS */
+  }
+  
   .responsive-text {
     font-size: clamp(20px, 8vw, 120px);
     stroke-width: 0.5px;
