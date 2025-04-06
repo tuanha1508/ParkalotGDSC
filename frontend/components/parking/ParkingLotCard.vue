@@ -7,7 +7,7 @@
       <div class="absolute top-2 left-2 bg-black/80 rounded-full px-3 py-1 text-sm text-white">
         ID: {{ lot.id }}
       </div>
-      <img :src="lot.imageUrl || '/images/default-parking.jpg'" alt="Parking lot" class="w-full h-48 object-cover" />
+      <img src="/images/default-parking.jpg" alt="Parking lot" class="w-full h-48 object-cover" />
     </div>
     
     <div class="p-5">

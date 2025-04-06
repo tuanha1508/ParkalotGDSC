@@ -1,23 +1,8 @@
 import { ref, onMounted } from 'vue'
 import { useRuntimeConfig } from 'nuxt/app'
+import { useBackendApi } from './useBackendApi'
 
-// Add Google Maps types
-declare global {
-  interface Window {
-    google: {
-      maps: {
-        places: {
-          AutocompleteService: new () => any;
-          AutocompleteSessionToken: new () => any;
-          PlacesServiceStatus: {
-            OK: string;
-          };
-        };
-      };
-    };
-  }
-}
-
+// Define PlacePrediction interface
 export interface PlacePrediction {
   description: string;
   place_id: string;
@@ -28,102 +13,87 @@ export function useGooglePlaces() {
   const addressSuggestions = ref<PlacePrediction[]>([])
   const isLoading = ref(false)
   const error = ref<string | null>(null)
+  const backendApi = useBackendApi()
   
-  let autocompleteService: any = null
-  let sessionToken: any = null
-  
-  const initGooglePlaces = () => {
-    return new Promise<void>((resolve, reject) => {
-      if (window.google && window.google.maps && window.google.maps.places) {
-        console.log('Google Maps API already loaded')
-        autocompleteService = new window.google.maps.places.AutocompleteService()
-        sessionToken = new window.google.maps.places.AutocompleteSessionToken()
-        resolve()
-        return
-      }
-      
-      console.log('Loading Google Maps API')
-      
-      // Load Google Maps API
-      const script = document.createElement('script')
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${useRuntimeConfig().public.googleMapsApiKey}&libraries=places`
-      script.async = true
-      script.defer = true
-      script.onload = () => {
-        console.log('Google Maps API script loaded successfully')
-        autocompleteService = new window.google.maps.places.AutocompleteService()
-        sessionToken = new window.google.maps.places.AutocompleteSessionToken()
-        resolve()
-      }
-      script.onerror = (e) => {
-        console.error('Error loading Google Maps API script:', e)
-        error.value = 'Failed to load Google Maps API'
-        reject(e)
-      }
-      
-      document.head.appendChild(script)
-    })
-  }
-  
+  /**
+   * Get place predictions using the backend API
+   * @param input User input for place search
+   * @returns Array of place predictions
+   */
   const getPlacePredictions = async (input: string): Promise<PlacePrediction[]> => {
-    if (!input.trim()) {
+    if (!input || !input.trim()) {
       addressSuggestions.value = []
       return []
-    }
-    
-    if (!autocompleteService) {
-      try {
-        await initGooglePlaces()
-      } catch (e) {
-        console.error('Failed to initialize autocomplete service', e)
-        return []
-      }
     }
     
     isLoading.value = true
+    error.value = null
     
     try {
-      const request = {
-        input,
-        sessionToken,
-      }
+      console.log('Searching for places with query:', input)
       
-      return new Promise<PlacePrediction[]>((resolve) => {
-        autocompleteService.getPlacePredictions(request, (predictions: PlacePrediction[], status: string) => {
-          console.log('Place predictions status:', status)
-          isLoading.value = false
-          
-          if (status === window.google.maps.places.PlacesServiceStatus.OK && predictions) {
-            console.log('Received predictions:', predictions)
-            addressSuggestions.value = predictions
-            resolve(predictions)
-          } else {
-            console.warn('No predictions received or error status:', status)
-            addressSuggestions.value = []
-            resolve([])
-          }
-        })
-      })
+      const predictions = await backendApi.getPlacePredictions(input)
+      
+      console.log('Received predictions:', predictions)
+      
+      if (Array.isArray(predictions) && predictions.length > 0) {
+        // Transform to match expected interface if needed
+        addressSuggestions.value = predictions.map(prediction => ({
+          description: prediction.description,
+          place_id: prediction.place_id
+        }))
+        
+        console.log('Processed predictions:', addressSuggestions.value)
+        return addressSuggestions.value
+      } else {
+        console.log('No predictions found')
+        addressSuggestions.value = []
+        return []
+      }
     } catch (e) {
       console.error('Error getting place predictions:', e)
-      isLoading.value = false
+      error.value = 'Failed to load place suggestions'
       addressSuggestions.value = []
       return []
+    } finally {
+      isLoading.value = false
     }
   }
   
-  onMounted(() => {
-    // Preload Google Places API if needed
-    if (process.client) {
-      initGooglePlaces().catch(e => console.error(e))
+  /**
+   * Get detailed information about a selected place
+   * @param placeId The Google Place ID to get details for
+   */
+  const getPlaceDetails = async (placeId: string) => {
+    if (!placeId) {
+      return null
     }
-  })
+
+    try {
+      isLoading.value = true
+      error.value = null
+      
+      console.log('Getting details for place ID:', placeId)
+
+      const details = await backendApi.getPlaceDetails(placeId)
+      
+      console.log('Received place details:', details)
+      
+      return details
+    } catch (e) {
+      console.error('Error getting place details:', e)
+      error.value = 'Failed to load place details'
+      return null
+    } finally {
+      isLoading.value = false
+    }
+  }
   
   return {
-    addressSuggestions,
+    predictions: addressSuggestions,
     isLoading,
     error,
     getPlacePredictions,
-    initGooglePlaces
+    getPlaceDetails
   }
 } 

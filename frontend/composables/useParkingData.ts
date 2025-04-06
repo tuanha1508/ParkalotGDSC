@@ -2,6 +2,8 @@ import { ref } from 'vue'
 // Import the parking data directly as a fallback
 import parkingDataJson from '../assets/parking-data.json'
 import { useGoogleMaps } from './useGoogleMaps'
+// Import the new backend API composable
+import { useBackendApi, type BackendParkingLot, type RouteResult } from './useBackendApi'
 
 export interface ParkingOption {
   value: string;
@@ -50,6 +52,8 @@ interface UserCoordinates {
 
 export function useParkingData() {
   const googleMaps = useGoogleMaps();
+  // Add the backend API
+  const backendApi = useBackendApi();
   
   // Vehicle type options based on permit types in the data
   const vehicleTypes = ref<ParkingOption[]>([
@@ -72,7 +76,9 @@ export function useParkingData() {
   const selectedDuration = ref('')
   const destination = ref('')
   const userCoordinates = ref<UserCoordinates | null>(null)
-  const selectedTravelMode = ref<'walking' | 'driving'>('walking')
+  const selectedTravelMode = ref<'walking' | 'driving'>('driving')
+  // Add a ref for destination details
+  const destinationDetails = ref<any>(null)
   
   const getVehicleTypeLabel = (value: string): string => {
     const option = vehicleTypes.value.find(opt => opt.value === value)
@@ -89,16 +95,42 @@ export function useParkingData() {
     selectedTravelMode.value = mode;
   }
 
-  // Store user's destination coordinates
+  // Replace the setUserDestination function to use backend geocoding
   const setUserDestination = async (address: string) => {
     if (!address) {
       userCoordinates.value = null;
       return;
     }
     
-    userCoordinates.value = await googleMaps.geocodeAddress(address);
-    destination.value = address;
+    try {
+      // Use the backend geocoding API only
+      const coordinates = await backendApi.getGeocodingData(address);
+      
+      if (coordinates) {
+        userCoordinates.value = coordinates;
+        destination.value = address;
+      } else {
+        console.error('Failed to geocode address via backend');
+        userCoordinates.value = null;
+      }
+    } catch (error) {
+      console.error('Error setting user destination:', error);
+      userCoordinates.value = null;
+    }
   };
+
+  // Store the full destination details from Google Places API
+  const setDestinationDetails = (details: any) => {
+    destinationDetails.value = details
+    
+    // If we have coordinates in the details, update userCoordinates
+    if (details && details.geometry && details.geometry.location) {
+      userCoordinates.value = {
+        lat: details.geometry.location.lat,
+        lng: details.geometry.location.lng
+      }
+    }
+  }
 
   // Transform raw parking data to the format our app expects
   const transformParkingData = async (
@@ -119,9 +151,26 @@ export function useParkingData() {
       // Calculate straight-line distance if user coordinates are available (in KILOMETERS)
       let distanceInKm = 0;
       if (userCoords && userCoords.lat && userCoords.lng) {
-        distanceInKm = googleMaps.calculateDistanceInKm(
-          userCoords.lat, userCoords.lng, lat, lng
-        );
+        // Use calculateDistanceInKm from the backend or utility function
+        const lat1 = userCoords.lat;
+        const lng1 = userCoords.lng;
+        const lat2 = lat;
+        const lng2 = lng;
+        
+        // Haversine formula calculation
+        const toRadians = (degrees: number) => degrees * Math.PI / 180;
+        const earthRadiusKm = 6371;
+        
+        const dLat = toRadians(lat2 - lat1);
+        const dLon = toRadians(lng2 - lng1);
+        
+        const a = 
+          Math.sin(dLat/2) * Math.sin(dLat/2) +
+          Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) * 
+          Math.sin(dLon/2) * Math.sin(dLon/2);
+        
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        distanceInKm = parseFloat((earthRadiusKm * c).toFixed(1));
       } else {
         // Random distance in kilometers
         distanceInKm = parseFloat((Math.random() * 5 + 0.1).toFixed(1));
@@ -172,10 +221,11 @@ export function useParkingData() {
       // Take the closest 20 lots to avoid too many API calls
       const closestLots = parkingLots.slice(0, 20);
       
-      // Calculate route distances in parallel using Google Maps API
+      // Calculate route distances in parallel using backend API
       const routePromises = closestLots.map(async (lot) => {
         try {
-          const routeResult = await googleMaps.calculateRouteDistance(
+          // Use backend API for route calculation
+          const routeResult = await backendApi.calculateRouteDistance(
             userCoords,
             lot.coordinates,
             selectedTravelMode.value
@@ -245,38 +295,101 @@ export function useParkingData() {
         await setUserDestination(location);
       }
       
-      // Try to load parking data from JSON file
-      let rawParkingData: RawParkingData[] = [];
+      // Try to fetch parking data from backend API instead of using local JSON
+      let parkingLots: ParkingLot[] = [];
       
-      try {
-        // Use the imported JSON data directly to avoid routing issues
-        rawParkingData = parkingDataJson as RawParkingData[];
+      if (location) {
+        // Use the backend API to get parking data with distances
+        const backendParkingData = await backendApi.getAvailableParking(location, vehicleType);
         
-        if (!rawParkingData || !Array.isArray(rawParkingData) || rawParkingData.length === 0) {
-          console.error('Parking data not found or invalid format');
-          return [];
+        if (backendParkingData && backendParkingData.length > 0) {
+          console.log('Received parking data from backend:', backendParkingData);
+          
+          // Convert backend data format to our app's format
+          parkingLots = backendParkingData.map(lot => {
+            // Get coordinates from local data (this would ideally come from backend)
+            const localLotData = parkingDataJson.find((item: any) => 
+              item.ParkingID === lot.ParkingID
+            );
+            
+            // Extract coordinates from the address string in local data
+            const coordParts = localLotData?.Address?.split(',').map(part => parseFloat(part.trim())) || [0, 0];
+            const lat = coordParts[0] || 0;
+            const lng = coordParts[1] || 0;
+            
+            // Select a random image from a pool of parking images
+            const imagePool = [
+              'https://images.unsplash.com/photo-1470224114660-3f6686c562eb',
+              'https://images.unsplash.com/photo-1573348722427-f1d6819fdf98',
+              'https://images.unsplash.com/photo-1621977717126-e29964a582e9',
+              'https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8',
+              'https://images.unsplash.com/photo-1590674668150-c379be7ad7bf'
+            ];
+            const randomImageUrl = imagePool[Math.floor(Math.random() * imagePool.length)];
+            
+            // Convert distance from meters to kilometers and miles
+            const distanceInKm = lot.Distance.value / 1000;
+            const distanceInMiles = distanceInKm / 1.60934;
+            
+            // Create the parking lot object in our app's format
+            return {
+              id: lot.ParkingID,
+              name: `Parking ${lot.ParkingID}`,
+              permitTypes: localLotData?.PermitTypes?.split(',').map((type: string) => type.trim()) || [],
+              location: localLotData?.Location || '',
+              totalSpaces: localLotData?.TotalSpaces || 0,
+              availableSpots: lot.Available,
+              address: localLotData?.Address ? `USF Campus, Tampa, FL ${localLotData.ZipCode}` : '',
+              coordinates: { lat, lng },
+              zipCode: localLotData?.ZipCode || '',
+              imageUrl: randomImageUrl,
+              distanceInKm: parseFloat(distanceInKm.toFixed(1)),
+              distanceInMiles: parseFloat(distanceInMiles.toFixed(1)),
+              routeDistance: lot.Distance.text,
+              routeDuration: null, // Backend doesn't provide duration yet
+              travelMode: selectedTravelMode.value,
+              floors: localLotData?.Floors || 0
+            };
+          });
+          
+          // Sort by distance
+          parkingLots.sort((a, b) => a.distanceInKm - b.distanceInKm);
+        } else {
+          // Fallback to local data if backend returns no results
+          console.warn('No data from backend API, falling back to local JSON');
+          const rawParkingData = parkingDataJson as unknown as RawParkingData[];
+          parkingLots = await transformParkingData(rawParkingData, userCoordinates.value);
         }
-      } catch (error) {
-        console.error('Error loading parking data:', error);
-        return [];
+      } else {
+        // No location provided, use local data without distances
+        console.log('No location provided, using local data without distances');
+        const rawParkingData = parkingDataJson as unknown as RawParkingData[];
+        parkingLots = await transformParkingData(rawParkingData, null);
       }
       
-      // Transform raw data to our app's format with route distances
-      let parkingLots = await transformParkingData(rawParkingData, userCoordinates.value);
-      
-      // Filter by vehicle type (permit type) if provided
+      // Filter by vehicle type (permit) if specified
       if (vehicleType) {
         parkingLots = parkingLots.filter(lot => 
-          lot.permitTypes.some(type => type.toLowerCase() === vehicleType.toLowerCase())
+          lot.permitTypes.some(type => type.includes(vehicleType))
         );
       }
       
+      // Duration filtering would go here if relevant
+      
+      console.log(`Returning ${parkingLots.length} parking lots`);
       return parkingLots;
     } catch (error) {
-      console.error('Error loading parking data:', error);
-      return [];
+      console.error('Error getting parking lots:', error);
+      // Fallback to local data in case of error
+      try {
+        const rawParkingData = parkingDataJson as unknown as RawParkingData[];
+        return transformParkingData(rawParkingData, null);
+      } catch (fallbackError) {
+        console.error('Fallback error:', fallbackError);
+        return [];
+      }
     }
-  }
+  };
 
   // In a real app, you might fetch these from an API
   const loadParkingOptions = async (): Promise<{
@@ -300,13 +413,15 @@ export function useParkingData() {
     selectedVehicleType,
     selectedDuration,
     destination,
+    destinationDetails,
     userCoordinates,
-    selectedTravelMode, 
+    selectedTravelMode,
     getVehicleTypeLabel,
     getDurationLabel,
-    setUserDestination,
     setTravelMode,
-    loadParkingOptions,
-    getParkingLots
+    setUserDestination,
+    setDestinationDetails,
+    getParkingLots,
+    loadParkingOptions
   }
 } 

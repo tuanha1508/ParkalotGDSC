@@ -93,8 +93,34 @@ watch(durationText, (newVal) => {
 
 const router = useRouter()
 
-const handleAddressChange = (suggestion: PlacePrediction) => {
+const handleAddressChange = (suggestion: PlacePrediction & { details?: any }) => {
   console.log('Selected address:', suggestion)
+  
+  // If we have place details, use them for a more accurate destination
+  if (suggestion.details) {
+    console.log('Place details:', suggestion.details)
+    const placeDetails = suggestion.details
+    
+    // Store the full place details in the parking data
+    parkingData.setDestinationDetails(placeDetails)
+    
+    // Use the best available name for the destination text
+    if (placeDetails.name) {
+      // For establishments, use the name (like "University Library")
+      destinationText.value = placeDetails.name
+    } else {
+      // Otherwise, use the first part of the description (before the first comma)
+      const parts = suggestion.description.split(',')
+      destinationText.value = parts[0].trim()
+    }
+    
+    // Set the destination in the parking data service to ensure coordinates are used
+    parkingData.setUserDestination(destinationText.value)
+  } else {
+    // Just the basic suggestion without details
+    destinationText.value = suggestion.description
+    parkingData.setUserDestination(suggestion.description)
+  }
 }
 
 const viewParkingMap = () => {

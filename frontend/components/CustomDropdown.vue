@@ -1,10 +1,14 @@
 <template>
   <div class="space-y-2 overflow-visible">
-    <label v-if="label" class="text-white text-sm">{{ label }}</label>
+    <label v-if="label" class="text-white text-sm">
+      {{ label }}
+      <span v-if="required" class="text-red-500">*</span>
+    </label>
     <div class="relative overflow-visible" ref="containerRef">
       <div 
         @click="toggle" 
         class="dropdown-trigger appearance-none w-full bg-black border border-white/30 rounded-md py-2 px-3 text-white focus:border-white cursor-pointer flex justify-between items-center"
+        :class="{'border-red-500': required && !modelValue}"
         ref="triggerRef"
       >
         <span>{{ displayValue }}</span>
@@ -54,6 +58,10 @@ const props = defineProps({
   placeholder: {
     type: String,
     default: 'Select an option...'
+  },
+  required: {
+    type: Boolean,
+    default: false
   }
 })
 

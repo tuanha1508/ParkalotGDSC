@@ -78,7 +78,7 @@ export function useGoogleMaps() {
   const calculateRouteDistance = async (
     origin: Coordinates,
     destination: Coordinates,
-    mode: 'walking' | 'driving' | 'bicycling' | 'transit' = 'walking' // Default to walking for campus
+    mode: 'walking' | 'driving' | 'bicycling' | 'transit' = 'driving' // Default to driving
   ): Promise<DistanceResult | null> => {
     try {
       const isLoaded = await initGoogleMapsApi();

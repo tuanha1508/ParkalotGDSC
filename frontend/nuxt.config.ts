@@ -18,7 +18,7 @@ export default defineNuxtConfig({
   // Add runtime config for API keys
   runtimeConfig: {
     public: {
-      googleMapsApiKey: process.env.NUXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''
+      backendUrl: process.env.NUXT_PUBLIC_BACKEND_URL || 'http://localhost:3000'
     }
   },
 

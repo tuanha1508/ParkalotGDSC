@@ -1,6 +1,6 @@
 <template>
   <div class="bg-black min-h-screen">
-    <div class="container mx-auto px-6 py-8">
+    <div class="container mx-auto px-6 pt-20 py-8">
       <!-- Page Header -->
       <ParkingLotsHeader :destination="filters.destination.value" />
       
