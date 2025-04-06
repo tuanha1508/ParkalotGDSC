@@ -5,9 +5,9 @@ async function bootstrap() {
   try {
     const app = await NestFactory.create(AppModule);
     
-    // Enable CORS for all origins
+    // Enable CORS for the specified domain
     app.enableCors({
-      origin: '*',
+      origin: ['https://parkalot-gdsc.vercel.app', 'http://localhost:3000', 'http://localhost:8080'],
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
       credentials: false,
     });
