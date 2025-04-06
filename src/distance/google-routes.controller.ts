@@ -10,7 +10,8 @@ export class GoogleRoutesController {
     private readonly configService: ConfigService  // Inject ConfigService
   ) {
   }
-  // input: param destination that the user want to go to
+  // input: param destination: where the user want to go to
+  //        param permit: type of permit that the user have
   // return: distance from one parking lot
   // return type: JSON
   // Example
