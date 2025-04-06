@@ -105,6 +105,16 @@ export const useParkingDashboard = () => {
     return sections
   })
   
+  // Generate Google Maps URL for the selected parking lot
+  const googleMapsUrl = computed(() => {
+    if (!selectedParkingLot.value) return '#'
+    
+    // Encode the location or name for directions to the parking lot
+    const destination = encodeURIComponent(selectedParkingLot.value.location || selectedParkingLot.value.name)
+    // Use current location as the starting point and provide directions to the destination
+    return `https://www.google.com/maps/dir/?api=1&origin=current+location&destination=${destination}&travelmode=driving`
+  })
+  
   // Load selected parking lot data from route query params
   const loadSelectedParkingLot = async () => {
     const lotId = route.query.selectedLot as string
@@ -238,6 +248,7 @@ export const useParkingDashboard = () => {
     handleManualEntry,
     formatDateTime,
     selectedParkingLot,
-    loadSelectedParkingLot
+    loadSelectedParkingLot,
+    googleMapsUrl
   }
 } 
