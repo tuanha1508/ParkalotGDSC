@@ -18,9 +18,18 @@ async function bootstrap() {
     
     // Enable CORS for the frontend
     app.enableCors({
-      origin: [process.env.FRONTEND_URL || 'http://localhost:3001', 'https://parkalot-gdsc.vercel.app'],
+      origin: ['https://parkalot-gdsc.vercel.app', 'http://localhost:3001'],
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
       credentials: true,
+      allowedHeaders: 'X-Requested-With,Content-Type,Accept,Authorization',
+      preflightContinue: false,
+      optionsSuccessStatus: 204,
+    });
+    
+    // Add security headers middleware
+    server.use((req, res, next) => {
+      res.header('Content-Security-Policy', "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;");
+      next();
     });
     
     await app.init();
