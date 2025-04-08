@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DistanceModule } from './distance/distance.module';
@@ -13,6 +13,7 @@ import { ParkingLot, ParkingLotSchema } from './parking-lot.schema';
 import { ParkingUpdateService } from './parking-update.service';
 import { InferenceService } from './inference/inference.service';
 import { InferenceController } from './inference/inference.controller';
+import { SecurityMiddleware } from './middleware/security.middleware';
 
 @Module({
   imports: [
@@ -31,4 +32,10 @@ import { InferenceController } from './inference/inference.controller';
   controllers: [AppController, InferenceController],
   providers: [AppService, DatabaseService, DistanceService, ParkingUpdateService, InferenceService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(SecurityMiddleware)
+      .forRoutes('*');
+  }
+}
