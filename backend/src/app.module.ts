@@ -17,7 +17,10 @@ import { InferenceController } from './inference/inference.controller';
 @Module({
   imports: [
     HttpModule, 
-    ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
+    ConfigModule.forRoot({ 
+      isGlobal: true, 
+      envFilePath: process.env.NODE_ENV === 'production' ? '.env.production' : '.env'
+    }),
     ScheduleModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGODB_URI || 'mongodb://localhost/parking'),
     MongooseModule.forFeature([

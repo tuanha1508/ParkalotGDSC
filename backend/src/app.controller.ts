@@ -1,4 +1,4 @@
-import { Controller, Get, Query, InternalServerErrorException } from '@nestjs/common';
+import { Controller, Get, Query, InternalServerErrorException, Options, HttpCode } from '@nestjs/common';
 import { AppService } from './app.service';
 import { DatabaseService } from './database/database.service';
 import { DistanceService, Coordinates, RouteResult, PlacePrediction, PlaceDetails } from './distance/distance.service';
@@ -207,5 +207,11 @@ export class AppController {
     } catch (error) {
       throw new InternalServerErrorException('Error getting place details');
     }
+  }
+
+  @Options('*')
+  @HttpCode(204)
+  handleOptions() {
+    return;
   }
 }
