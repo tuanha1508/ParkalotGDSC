@@ -1,5 +1,16 @@
 {
   "framework": "nuxtjs",
   "buildCommand": "npm run build",
-  "outputDirectory": ".output/public"
+  "outputDirectory": ".output/public",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data: https://*.vercel.app https://vercel.live;"
+        }
+      ]
+    }
+  ]
 } 

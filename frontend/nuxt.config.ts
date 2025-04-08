@@ -45,7 +45,11 @@ export default defineNuxtConfig({
       title: 'Parkalot',
       meta: [
         { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        {
+          'http-equiv': 'Content-Security-Policy',
+          content: "default-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data: https://*.vercel.app https://vercel.live;"
+        }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/logo.png' }
