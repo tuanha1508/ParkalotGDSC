@@ -1,0 +1,7 @@
+{
+  "analytics": false,
+  "feedback": {
+    "feedbackButton": false,
+    "prompt": false
+  }
+} 
