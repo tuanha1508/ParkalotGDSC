@@ -21,12 +21,8 @@ import { InferenceController } from './inference/inference.controller';
       isGlobal: true,
       envFilePath: process.env.NODE_ENV === 'production' ? '.env.production' : '.env' 
     }),
-    ConfigModule.forRoot({ 
-      isGlobal: true, 
-      envFilePath: process.env.NODE_ENV === 'production' ? '.env.production' : '.env'
-    }),
     ScheduleModule.forRoot(),
-    MongooseModule.forRoot(process.env.MONGO_URI || 'mongodb://localhost/parking'),
+    MongooseModule.forRoot(process.env.MONGODB_URI || 'mongodb://localhost/parking'),
     MongooseModule.forFeature([
       { name: ParkingLot.name, schema: ParkingLotSchema },
     ]),

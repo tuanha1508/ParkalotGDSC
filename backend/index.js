@@ -1,3 +1,3 @@
 // This file is used as an entry point for Vercel serverless functions
-// It re-exports the NestJS application from the compiled source
-module.exports = require('./dist/main.js'); 
+// It exports the Express server from the compiled NestJS application
+module.exports = require('./dist/main').default; 

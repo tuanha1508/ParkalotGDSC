@@ -1,16 +1,47 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { ExpressAdapter } from '@nestjs/platform-express';
+import * as express from 'express';
+
+// Create Express instance
+const server = express();
+
+// For serverless use
+let cachedApp: any;
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  if (!cachedApp) {
+    const app = await NestFactory.create(
+      AppModule,
+      new ExpressAdapter(server)
+    );
+    
+    // Enable CORS for the frontend
+    app.enableCors({
+      origin: [process.env.FRONTEND_URL || 'http://localhost:3001', 'https://parkalot-gdsc.vercel.app'],
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      credentials: true,
+    });
+    
+    await app.init();
+    cachedApp = app;
+  }
   
-  // Enable CORS for the frontend
-  app.enableCors({
-    origin: [process.env.FRONTEND_URL || 'http://localhost:3001', 'https://parkalot-gdsc.vercel.app'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    credentials: true,
-  });
-  
-  await app.listen(process.env.PORT ?? 3000);
+  return cachedApp;
 }
-bootstrap();
+
+// For local development 
+if (process.env.NODE_ENV !== 'production') {
+  bootstrap().then(app => {
+    app.listen(process.env.PORT ?? 3000);
+  });
+}
+
+// Export handler for serverless
+export const handler = async (req: any, res: any) => {
+  const app = await bootstrap();
+  server(req, res);
+};
+
+// Export express instance for Vercel
+export default server;
