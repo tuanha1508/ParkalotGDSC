@@ -4,14 +4,20 @@ import { AppService } from './app.service';
 import { DistanceModule } from './distance/distance.module';
 import { ConfigModule } from '@nestjs/config'
 import {HttpModule} from "@nestjs/axios";
+import { MongooseModule } from '@nestjs/mongoose';
 import { DatabaseModule } from './database/database.module';
 import { DatabaseService } from './database/database.service';
 import { DistanceService } from './distance/distance.service';
 // import { ChatbotService } from './chatbot/chatbot.service';
 
 @Module({
-  imports: [HttpModule, ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }), DistanceModule],
+  imports: [HttpModule,
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
+    DistanceModule,
+    MongooseModule.forRoot(process.env.MONGODB_URI!, { dbName: 'ParkingDB' }),
+    DatabaseModule, // <-- Import the module that provides DatabaseService + ParkingLotModel
+    ],
   controllers: [AppController],
-  providers: [AppService, DatabaseService, DistanceService],
+  providers: [AppService, DistanceService],
 })
 export class AppModule {}

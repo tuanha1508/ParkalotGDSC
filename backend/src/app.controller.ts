@@ -2,6 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 import { DatabaseService } from './database/database.service';
 import { DistanceService } from './distance/distance.service';
+import {ParkingLot} from "./database/database.schema";
 
 @Controller()
 export class AppController {
@@ -52,29 +53,41 @@ export class AppController {
     @Query('permit') permit: string
   ) {
     try {
-      // Get distances from DistanceService
-      const distances = await this.distanceService.get_distances(destination, permit);
-
-      // Get parking lots from DatabaseService
-      const parkingLots = await this.databaseService.get_parkings(distances);
-
+      // Maybe add a cache here
+      // Get parking lots from DatabaseService (to get the updated count of available parking lots)
+      const parkingLots = await this.databaseService.get_all_parkings();
+      const distances = await this.distanceService.get_distances(destination, permit, parkingLots);
       // Check if parking lots data is in the correct format
-      if (!Array.isArray(parkingLots)) {
+      if (!Array.isArray(distances) || !Array.isArray(parkingLots)) {
         return {
           statusCode: 500,
           message: 'Parking lots data is not in the correct format',
         };
       }
 
-      // Merge distances and parking lots
-      const merged = distances.map(d => {
-        const lot = parkingLots.find(p => p.ParkingID === d.parkingLotId);
-        return {
+      // Initialize an empty array to store the merged results
+      const merged: { ParkingID: string; Available: number; Distance: any }[] = [];
+
+      // Loop through each distance object
+      for (let i = 0; i < distances.length; i++) {
+        const d = distances[i];
+
+        // Find the corresponding parking lot by ParkingID
+        let lot: ParkingLot | undefined;
+        for (let j = 0; j < parkingLots.length; j++) {
+          if (parkingLots[j].ParkingID === d.parkingLotId) {
+            lot = parkingLots[j];
+            break; // Stop searching once found
+          }
+        }
+
+        // Push merged object to the result array
+        merged.push({
           ParkingID: d.parkingLotId,
           Available: lot?.Available ?? 0,
           Distance: d.distance,
-        };
-      });
+        });
+      }
 
       // Return the merged result
       return merged;

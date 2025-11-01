@@ -1,86 +1,74 @@
-import { Injectable, Query } from '@nestjs/common';
-import { DistanceModule } from './distance.module';
+import { Injectable } from '@nestjs/common';
 import { firstValueFrom } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
-import path from 'path';
-import * as fs from 'fs'
+import {ParkingLot} from "../database/database.schema";
+
 @Injectable()
 export class DistanceService {
+
   constructor(
     private readonly httpService: HttpService,
-    private readonly configService: ConfigService  // Inject ConfigService
+    private readonly configService: ConfigService
   ) {}
-  // input: param destination: where the user want to go to
-  //        param permit: type of permit that the user have
-  // return: distance from one parking lot
-  // return type: JSON
-  // Example
-  // [{
-  //       "parkingLotId": "28",
-  //       "distance": {
-  //           "text": "2.7 km",
-  //           "value": 2675
-  //       }
-  //   },
-  //   {
-  //       "parkingLotId": "29A",
-  //       "distance": {
-  //           "text": "0.4 km",
-  //           "value": 422
-  //       }
-  //   }]
-  parseJSON(path: string) {
-    try {
-      const data = fs.readFileSync(path, 'utf8'); // ✅ fs used correctly here
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      return JSON.parse(data);
-    } catch (error) {
-      console.error('Error reading or parsing park_data.json:', error);
-      return []; // Fallback to empty array
-    }
-  }
-  async get_distances(@Query('destination') destination: string,
-                      @Query('permit') permit: string) {
-    const apiKey = this.configService.get<string>('GOOGLE_MAPS_API_KEY')
 
+  /**
+   * Calculate distances from parking lots to a destination using Google Maps API
+   * @param destination - Where the user wants to go
+   * @param permit - User's permit type
+   * @param parkingLots - Array of Parking objects
+   * @returns Array of parking lot distances sorted closest to farthest
+   */
+  async get_distances(
+    destination: string,
+    permit: string,
+    parkingLots: ParkingLot[]
+  ): Promise<{ parkingLotId: string; distance: any }[]> {
+    // Get the Google Maps API key
+    const apiKey = this.configService.get<string>('GOOLGE_MAPS_API');
     if (!apiKey) {
-      throw new Error('Google Maps API Key is missing!')
+      throw new Error('Google Maps API Key is missing!');
     }
 
-    const url = 'https://maps.googleapis.com/maps/api/distancematrix/json'
-    const parsedData = this.parseJSON('src/park_data.json')
-    const distances: any[] = []
+    const url = 'https://maps.googleapis.com/maps/api/distancematrix/json';
+    const distances: { parkingLotId: string; distance: any }[] = [];
 
-    for (const parking of parsedData) {
-      let permitType = parking.PermitTypes
-      permitType = String(permitType)
-      if (permit == permitType) {
-        const org = parking.Address
-        const parkingId = parking.ParkingID
+    // Loop through each parking lot
+    for (const parking of parkingLots) {
+      // Only consider lots matching the permit type
+      if (permit === String(parking.PermitTypes)) {
         const params = {
-          origins: org,
-          destinations: destination,
+          origins: parking.Address,
+          destinations: destination, // Use destination, not ParkingID
           key: apiKey,
-        }
+        };
 
         try {
-          const response$ = this.httpService.get(url, { params })
-          const response = await firstValueFrom(response$)
+          // Call Google Maps Distance Matrix API
+          const response$ = this.httpService.get(url, { params });
+          const response = await firstValueFrom(response$);
 
-          const distanceData = response.data?.rows?.[0]?.elements?.[0]?.distance
-          if (distanceData) {
+          // Extract distance from the response
+          const distanceFromDestination = response.data?.rows?.[0]?.elements?.[0]?.distance;
+
+          if (distanceFromDestination) {
             distances.push({
-              parkingLotId: parkingId, // Use actual ParkingID
-              distance: distanceData,
-            })
+              parkingLotId: parking.ParkingID,
+              distance: distanceFromDestination,
+            });
           }
-        } catch (error) {
-          console.error(`Error fetching distance from parking lot ${parkingId}:`, error.message)
+        } catch (error: any) {
+          console.error(
+            `Error fetching distance from parking lot ${parking.ParkingID}:`,
+            error.message
+          );
         }
       }
     }
-    distances.sort((a, b) => a.distance.value - b.distance.value)
-    return distances
+
+    // Sort distances from closest to farthest
+    distances.sort((a, b) => a.distance.value - b.distance.value);
+
+    return distances;
   }
 }
