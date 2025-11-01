@@ -55,7 +55,7 @@ export class AppController {
     try {
       // Maybe add a cache here
       // Get parking lots from DatabaseService (to get the updated count of available parking lots)
-      const parkingLots = await this.databaseService.get_all_parkings();
+      const parkingLots = await this.databaseService.get_all_parkings_by_permit_with_limit(permit, 10);
       const distances = await this.distanceService.get_distances(destination, permit, parkingLots);
       // Check if parking lots data is in the correct format
       if (!Array.isArray(distances) || !Array.isArray(parkingLots)) {

@@ -31,42 +31,30 @@ export class DistanceService {
     }
 
     const url = 'https://maps.googleapis.com/maps/api/distancematrix/json';
-    const distances: { parkingLotId: string; distance: any }[] = [];
+    // 1. Create an array of promises for all valid parking lots
+    const promises = parkingLots
+      .filter(p => String(p.PermitTypes).includes(permit)) // only matching permit
+      .map(parking => {
+        const params = { origins: parking.Address, destinations: destination, key: apiKey };
+        const request$ = this.httpService.get(url, { params });
+        return firstValueFrom(request$) // returns a promise
+          .then(response => ({
+            parkingLotId: parking.ParkingID,
+            distance: response.data?.rows?.[0]?.elements?.[0]?.distance,
+          }))
+          .catch(err => {
+            console.error(`Error fetching distance for ${parking.ParkingID}:`, err.message);
+            return null; // ignore failed requests
+          });
+      });
 
-    // Loop through each parking lot
-    for (const parking of parkingLots) {
-      // Only consider lots matching the permit type
-      if (permit === String(parking.PermitTypes)) {
-        const params = {
-          origins: parking.Address,
-          destinations: destination, // Use destination, not ParkingID
-          key: apiKey,
-        };
+    // 2. Wait for all requests to complete in parallel
+    const results = await Promise.all(promises);
 
-        try {
-          // Call Google Maps Distance Matrix API
-          const response$ = this.httpService.get(url, { params });
-          const response = await firstValueFrom(response$);
+    // 3. Filter out any nulls from failed requests
+    const distances = results.filter(r => r !== null);
 
-          // Extract distance from the response
-          const distanceFromDestination = response.data?.rows?.[0]?.elements?.[0]?.distance;
-
-          if (distanceFromDestination) {
-            distances.push({
-              parkingLotId: parking.ParkingID,
-              distance: distanceFromDestination,
-            });
-          }
-        } catch (error: any) {
-          console.error(
-            `Error fetching distance from parking lot ${parking.ParkingID}:`,
-            error.message
-          );
-        }
-      }
-    }
-
-    // Sort distances from closest to farthest
+    // 4. Sort by distance
     distances.sort((a, b) => a.distance.value - b.distance.value);
 
     return distances;

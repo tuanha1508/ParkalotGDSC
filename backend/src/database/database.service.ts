@@ -26,7 +26,31 @@ export class DatabaseService {
     throw new InternalServerErrorException('Error fetching parking lots');
   }
 }
-
+async get_all_parkings_by_permit( permit:string ): Promise<ParkingLot[]> {
+  try {
+    const regex = new RegExp(`\\b${permit}\\b`, 'i'); // matches exact permit, case-insensitive
+    const results = await this.parkingModel
+      .find({ PermitTypes: regex })
+      .exec();
+    return results;
+  } catch (error) {
+    console.error('MongoDB error:', error);
+    throw new InternalServerErrorException('Error fetching parking lots');
+  }
+}
+async get_all_parkings_by_permit_with_limit( permit: string, limit: number ): Promise<ParkingLot[]> {
+  try {
+    const regex = new RegExp(`\\b${permit}\\b`, 'i'); // matches exact permit, case-insensitive
+    const results = await this.parkingModel
+      .find({ PermitTypes: regex })
+      .limit(limit)
+      .exec();
+    return results;
+  } catch (error) {
+    console.error('MongoDB error:', error);
+    throw new InternalServerErrorException('Error fetching parking lots');
+  }
+}
   /**
    * Fetch a single parking lot by its ParkingID
    */
