@@ -21,15 +21,19 @@
   },
   "dependencies": {
     "@nestjs/axios": "^4.0.0",
-    "@nestjs/common": "^11.0.1",
+    "@nestjs/common": "^11.0.13",
     "@nestjs/config": "^4.0.2",
-    "@nestjs/core": "^11.0.1",
-    "@nestjs/platform-express": "^11.0.1",
+    "@nestjs/core": "^11.0.13",
+    "@nestjs/platform-express": "^11.0.13",
     "axios": "^1.8.4",
     "dotenv": "^16.4.7",
+    "fastify": "^5.2.2",
+    "fastify-websocket": "^4.2.2",
     "mongodb": "^6.15.0",
+    "node-fetch": "^3.3.2",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "ws": "^8.18.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

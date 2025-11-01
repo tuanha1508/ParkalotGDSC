@@ -83,5 +83,4 @@ export class DistanceService {
     distances.sort((a, b) => a.distance.value - b.distance.value)
     return distances
   }
-
 }

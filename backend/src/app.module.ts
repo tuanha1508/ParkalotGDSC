@@ -7,6 +7,7 @@ import {HttpModule} from "@nestjs/axios";
 import { DatabaseModule } from './database/database.module';
 import { DatabaseService } from './database/database.service';
 import { DistanceService } from './distance/distance.service';
+// import { ChatbotService } from './chatbot/chatbot.service';
 
 @Module({
   imports: [HttpModule, ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }), DistanceModule],
