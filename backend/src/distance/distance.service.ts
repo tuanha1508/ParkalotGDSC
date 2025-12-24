@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { firstValueFrom } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config';
-import {ParkingLot} from "../database/database.schema";
+import {ParkingLotDocument} from "../database/database.schema";
 
 @Injectable()
 export class DistanceService {
@@ -22,7 +22,7 @@ export class DistanceService {
   async get_distances(
     destination: string,
     permit: string,
-    parkingLots: ParkingLot[]
+    parkingLots: ParkingLotDocument[]
   ): Promise<{ parkingLotId: string; distance: any }[]> {
     // Get the Google Maps API key
     const apiKey = this.configService.get<string>('GOOLGE_MAPS_API');

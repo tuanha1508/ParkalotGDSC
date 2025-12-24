@@ -2,7 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 import { DatabaseService } from './database/database.service';
 import { DistanceService } from './distance/distance.service';
-import {ParkingLot} from "./database/database.schema";
+import {ParkingLotDocument} from "./database/database.schema";
 
 @Controller()
 export class AppController {
@@ -73,7 +73,7 @@ export class AppController {
         const d = distances[i];
 
         // Find the corresponding parking lot by ParkingID
-        let lot: ParkingLot | undefined;
+        let lot: ParkingLotDocument | undefined;
         for (let j = 0; j < parkingLots.length; j++) {
           if (parkingLots[j].ParkingID === d.parkingLotId) {
             lot = parkingLots[j];

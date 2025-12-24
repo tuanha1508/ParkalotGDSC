@@ -5,7 +5,7 @@ import { Document } from 'mongoose';
  * ParkingLot schema representing each parking lot document
  */
 @Schema({ collection: 'parkingLots' }) // explicitly map to existing collection
-export class ParkingLot extends Document {
+export class ParkingLotDocument extends Document {
   @Prop({ required: true })
   ParkingID: string;
 
@@ -37,4 +37,4 @@ export class ParkingLot extends Document {
   lastUpdated: Date;
 }
 
-export const DatabaseSchema = SchemaFactory.createForClass(ParkingLot);
+export const DatabaseSchema = SchemaFactory.createForClass(ParkingLotDocument);
