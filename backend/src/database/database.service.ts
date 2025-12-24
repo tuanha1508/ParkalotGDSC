@@ -5,12 +5,11 @@ import { ParkingLotDocument } from './database.schema'; // Assuming schema is in
 
 @Injectable()
 export class DatabaseService {
-  /**
-   * Constructor injects the ParkingLot Mongoose model
-   * This replaces the need for manual MongoClient connections
-   */
+ // Constructor injects the ParkingLot Mongoose model
   constructor(
-    @InjectModel(ParkingLotDocument.name) private parkingModel: Model<ParkingLotDocument>,
+    @InjectModel(ParkingLotDocument.name)
+    private parkingModel:
+      Model<ParkingLotDocument>,
   ) {}
   // Get all parking lot in the database
   async get_all_parkings(): Promise<ParkingLotDocument[]> {
@@ -23,10 +22,12 @@ export class DatabaseService {
     throw new InternalServerErrorException('Error fetching parking lots');
   }
 }
-async get_all_parkings_by_permit( permit:string ): Promise<ParkingLotDocument[]> {
+async get_all_parkings_by_permit(
+  permit:string ):
+  Promise<ParkingLotDocument[]> {
+    try {
     // matches exact permit, case-insensitive
     const regex = new RegExp(`\\b${permit}\\b`, 'i');
-    try {
     return await this.parkingModel
       .find({ PermitTypes: regex })
       .exec();
@@ -35,9 +36,12 @@ async get_all_parkings_by_permit( permit:string ): Promise<ParkingLotDocument[]>
     throw new InternalServerErrorException('Error fetching parking lots');
   }
 }
-async get_all_parkings_by_permit_with_limit( permit: string, limit: number ): Promise<ParkingLotDocument[]> {
+async get_all_parkings_by_permit_with_limit(
+  permit: string, 
+  limit: number ):
+  Promise<ParkingLotDocument[]> {
   try {
-    const regex = new RegExp(`\\b${permit}\\b`, 'i'); // matches exact permit, case-insensitive
+    const regex = new RegExp(`\\b${permit}\\b`, 'i');
     return await this.parkingModel
       .find({ PermitTypes: regex })
       .limit(limit)
