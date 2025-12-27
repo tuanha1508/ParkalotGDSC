@@ -1,4 +1,5 @@
 <template>
+  <client-only>
   <div class="fixed bottom-4 right-4 z-50">
     <!-- Chatbot button -->
     <ClientOnly>
@@ -71,6 +72,7 @@
       </div>
     </ClientOnly>
   </div>
+  </client-only>
 </template>
 
 <script setup>

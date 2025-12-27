@@ -1,4 +1,5 @@
 <template>
+  <ClientOnly>
   <section class="py-20 border-t border-white/20">
     <div class="max-w-6xl mx-auto px-4">
       <h2 class="text-3xl font-bold mb-16">Collaborate across tools and teams</h2>
@@ -22,6 +23,7 @@
       </div>
     </div>
   </section>
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">

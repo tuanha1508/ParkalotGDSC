@@ -17,56 +17,56 @@
       <div class="container mx-auto px-6 sm:px-10 md:px-16 lg:px-24">
         <div class="flex flex-col md:flex-row gap-3">
           <!-- Logo (Larger) - On the same line with footer items -->
-          <div 
-            class="w-full md:w-1/5 pl-0 -mt-1"
-          >
-            <NuxtLink to="/" class="inline-block">
-              <img src="/logo.png" alt="Parkalot Logo" class="h-28 w-auto" />
-            </NuxtLink>
-          </div>
-          
+<!--          <div -->
+<!--            class="w-full md:w-1/5 pl-0 -mt-1"-->
+<!--          >-->
+<!--            <NuxtLink to="/" class="inline-block">-->
+<!--              <img src="/logo.png" alt="Parkalot Logo" class="h-28 w-auto" />-->
+<!--            </NuxtLink>-->
+<!--          </div>-->
+
           <!-- Navigation Links -->
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-0 w-full md:w-4/5 md:pl-2 mt-1">
-            <!-- Features Column -->
-            <div>
-              <h3 class="text-white font-normal mb-0 text-xs">Features</h3>
-              <ul class="space-y-0">
-                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Plan</a></li>
-                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Build</a></li>
-                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Insights</a></li>
-              </ul>
-            </div>
-            
-            <!-- Product Column -->
-            <div>
-              <h3 class="text-white font-normal mb-0 text-xs">Product</h3>
-              <ul class="space-y-0">
-                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Pricing</a></li>
-                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Method</a></li>
-                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Integrations</a></li>
-              </ul>
-            </div>
-            
-            <!-- Company Column -->
-            <div>
-              <h3 class="text-white font-normal mb-0 text-xs">Company</h3>
-              <ul class="space-y-0">
-                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">About</a></li>
-                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Customers</a></li>
-                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Careers</a></li>
-              </ul>
-            </div>
-            
-            <!-- Resources Column -->
-            <div>
-              <h3 class="text-white font-normal mb-0 text-xs">Resources</h3>
-              <ul class="space-y-0">
-                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">API</a></li>
-                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Status</a></li>
-                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Documentation</a></li>
-              </ul>
-            </div>
-          </div>
+<!--          <div class="grid grid-cols-2 md:grid-cols-4 gap-0 w-full md:w-4/5 md:pl-2 mt-1">-->
+<!--            &lt;!&ndash; Features Column &ndash;&gt;-->
+<!--            <div>-->
+<!--              <h3 class="text-white font-normal mb-0 text-xs">Features</h3>-->
+<!--              <ul class="space-y-0">-->
+<!--                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Plan</a></li>-->
+<!--                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Build</a></li>-->
+<!--                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Insights</a></li>-->
+<!--              </ul>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Product Column &ndash;&gt;-->
+<!--            <div>-->
+<!--              <h3 class="text-white font-normal mb-0 text-xs">Product</h3>-->
+<!--              <ul class="space-y-0">-->
+<!--                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Pricing</a></li>-->
+<!--                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Method</a></li>-->
+<!--                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Integrations</a></li>-->
+<!--              </ul>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Company Column &ndash;&gt;-->
+<!--            <div>-->
+<!--              <h3 class="text-white font-normal mb-0 text-xs">Company</h3>-->
+<!--              <ul class="space-y-0">-->
+<!--                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">About</a></li>-->
+<!--                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Customers</a></li>-->
+<!--                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Careers</a></li>-->
+<!--              </ul>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Resources Column &ndash;&gt;-->
+<!--            <div>-->
+<!--              <h3 class="text-white font-normal mb-0 text-xs">Resources</h3>-->
+<!--              <ul class="space-y-0">-->
+<!--                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">API</a></li>-->
+<!--                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Status</a></li>-->
+<!--                <li><a href="#" class="text-gray-400 hover:text-primary-400 transition-colors duration-300 text-xxs">Documentation</a></li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </div>-->
         </div>
         
         <!-- Social Icons and Copyright - Integrated within the footer section -->
@@ -113,4 +113,4 @@ main, footer {
 :deep(.router-link-exact-active[href="/"]) ~ footer {
   font-size: 0.9em;
 }
-</style> 
+</style>

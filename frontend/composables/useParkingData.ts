@@ -301,7 +301,7 @@ export function useParkingData() {
     selectedDuration,
     destination,
     userCoordinates,
-    selectedTravelMode, 
+    selectedTravelMode,
     getVehicleTypeLabel,
     getDurationLabel,
     setUserDestination,
@@ -309,4 +309,4 @@ export function useParkingData() {
     loadParkingOptions,
     getParkingLots
   }
-} 
+}

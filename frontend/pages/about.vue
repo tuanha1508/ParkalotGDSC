@@ -1,21 +1,15 @@
 <template>
   <div class="bg-black text-white">
     <HeroSection />
-    <StatsSection />
     <ModernTeamsSection />
-    <FeaturesSection />
     <FoundationSection />
-    <CTASection />
   </div>
 </template>
 
 <script setup lang="ts">
 import HeroSection from '~/components/about/HeroSection.vue'
-import StatsSection from '~/components/about/StatsSection.vue'
 import ModernTeamsSection from '~/components/about/ModernTeamsSection.vue'
-import FeaturesSection from '~/components/about/FeaturesSection.vue'
 import FoundationSection from '~/components/about/FoundationSection.vue'
-import CTASection from '~/components/about/CTASection.vue'
 
 definePageMeta({
   layout: 'default'

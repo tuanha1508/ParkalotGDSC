@@ -1,4 +1,5 @@
 <template>
+    <ClientOnly>
   <section class="py-20 border-t border-white/20">
     <div class="max-w-6xl mx-auto px-4">
       <div
@@ -102,6 +103,7 @@
       </div>
     </div>
   </section>
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">

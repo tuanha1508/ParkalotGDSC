@@ -1,52 +1,77 @@
 import { ref } from 'vue'
-import { useParkingData, type ParkingLot } from './useParkingData'
+import type { ParkingLot } from './useParkingData'
 
 export function useParkingSearch() {
-  const parkingData = useParkingData()
   const parkingLots = ref<ParkingLot[]>([])
   const isLoading = ref(false)
   const hasError = ref(false)
   const errorMessage = ref('')
 
-  // Fetch parking lots based on filters
-  const fetchParkingLots = async (destination: string, vehicleType?: string, duration?: string) => {
-    // Reset state
+  const fetchParkingLots = async (
+    destination: string,
+    permit?: string,
+    duration?: string
+  ) => {
     isLoading.value = true
     hasError.value = false
     errorMessage.value = ''
-    
+
     try {
-      console.log(`Fetching parking lots for: ${destination || "all"}, vehicle: ${vehicleType || "any"}, duration: ${duration || "any"}`)
-      
-      const results = await parkingData.getParkingLots(
-        destination || "",
-        vehicleType || undefined,
-        duration || undefined
-      )
-      
-      // Log the result count for debugging
-      console.log(`Found ${results.length} parking lots`)
-      
-      // Verify the data structure
-      if (results && Array.isArray(results)) {
-        parkingLots.value = results
-      } else {
-        console.error('Invalid parking lot data format:', results)
+      if (!destination || !permit) {
         parkingLots.value = []
-        hasError.value = true
-        errorMessage.value = 'Invalid parking data format received'
+        return
       }
-    } catch (error) {
-      console.error('Error fetching parking lots:', error)
+
+      const query = new URLSearchParams({
+        destination,
+        permit
+      })
+      const res = await fetch(
+        `http://localhost:4000/availableParking?${query.toString()}`
+      )
+      console.log(res)
+
+
+      if (!res.ok) {
+        throw new Error(`Backend error: ${res.status}`)
+      }
+
+      const data = await res.json()
+
+      if (!Array.isArray(data)) {
+        throw new Error('Invalid data format from backend')
+      }
+
+      parkingLots.value = data.map((item: any): ParkingLot => ({
+        id: item.ParkingID,
+        name: item.ParkingID,
+        permitTypes: [],            // placeholder
+        location: '',               // placeholder
+        totalSpaces: 0,             // placeholder
+        availableSpots: item.Available,
+        address: '',                // placeholder
+        coordinates: { lat: 0, lng: 0 }, // placeholder
+        zipCode: '',                // placeholder
+        imageUrl: undefined,
+        distanceInKm: item.Distance.value / 1000,
+        distanceInMiles: (item.Distance.value / 1000) * 0.621371,
+        routeDistance: null,
+        routeDuration: null,
+        travelMode: undefined,
+        floors: 0,                  // placeholder
+      }))
+      console.log(res)
+    } catch (err) {
+      console.error('Error fetching parking lots:', err)
       parkingLots.value = []
       hasError.value = true
-      errorMessage.value = error instanceof Error ? error.message : 'Unknown error occurred'
+      errorMessage.value =
+        err instanceof Error ? err.message : 'Unknown error'
     } finally {
       isLoading.value = false
     }
   }
 
-  // Clear search results
   const clearResults = () => {
     parkingLots.value = []
     hasError.value = false
@@ -61,4 +86,4 @@ export function useParkingSearch() {
     fetchParkingLots,
     clearResults
   }
-} 
+}

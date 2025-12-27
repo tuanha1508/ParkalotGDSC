@@ -1,4 +1,5 @@
 <template>
+  <ClientOnly>
   <div class="overflow-hidden">
     <div class="border-b border-white/20 px-6 py-4">
       <h3 class="text-xl font-semibold text-white flex items-center">
@@ -47,6 +48,7 @@
       </div>
     </div>
   </div>
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">

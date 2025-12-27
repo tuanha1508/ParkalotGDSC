@@ -1,4 +1,5 @@
 <template>
+  <client-only>
   <div class="bg-black min-h-screen">
     <div class="container mx-auto px-6 py-8">
       <!-- Page Header -->
@@ -23,12 +24,13 @@
       <LoadingState v-if="search.isLoading.value" />
       
       <!-- Empty State -->
-      <EmptyState 
+      <EmptyState
         v-if="!search.isLoading.value && search.parkingLots.value.length === 0" 
-        @reset="handleClearAll" 
+        @reset="handleClearAll"
       />
     </div>
   </div>
+  </client-only>
 </template>
 
 <script setup lang="ts">
